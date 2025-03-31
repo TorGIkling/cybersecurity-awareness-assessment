@@ -1,0 +1,21 @@
+.header-content {
+    border-bottom: black solid 1px;
+    width: 100vw;
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    background-color: #d6d6d6;
+}
+
+.header-img {
+    height: 40px;
+    width: 40px;
+}
+
+.username-txt {
+    font-size: 2.6rem;
+    margin: 2rem;
+    font-weight: bold;
+}

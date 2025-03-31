@@ -1,0 +1,17 @@
+.home-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: end;
+    width: 80vh;
+    height: 80vh;
+}
+
+.start-survey-btn {
+    width: 15vw;
+    height: 7vh;
+    margin: 2rem;
+    font-size: 28px;
+    border-radius: 10px;
+    border: solid 1px black;
+}
