@@ -9,11 +9,15 @@ function AddOrganization() {
         navigate("/organizations");
     }
 
+    const handleAddOrganization = async () => {
+        navigate("/organizations");
+    }
+
     return (
       <div className="add-organization">
           <div className="add-organization-container">
               <input className="add-organization-input" type="text" placeholder="Organisasjonens Navn" />
-              <button className="add-organization-button" type="submit">Legg til Organisasjon</button>
+              <button className="add-organization-button" type="submit" onClick={handleAddOrganization}>Legg til Organisasjon</button>
           </div>
 
           <button className="back-button" type="button" onClick={handleBackClick} >Tilbake</button>

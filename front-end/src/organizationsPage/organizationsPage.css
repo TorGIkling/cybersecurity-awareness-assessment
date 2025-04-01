@@ -1,0 +1,21 @@
+.organizations-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+
+}
+
+.add-organization-btn {
+    width: 15vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+    margin: 2rem 10vw auto auto;
+    font-size: 2rem;
+    background-color: #d6d6d6;
+}
