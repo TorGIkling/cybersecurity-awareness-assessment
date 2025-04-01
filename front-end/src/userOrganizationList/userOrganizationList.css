@@ -1,0 +1,29 @@
+.user-organization-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    width: 100vw;
+    background-color: #ffffff;
+}
+
+.btn-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80vw;
+    margin-bottom: auto;
+}
+
+.user-list-btn {
+    width: 15vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+
+    font-size: 2rem;
+    background-color: #d6d6d6;
+}
