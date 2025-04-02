@@ -1,0 +1,29 @@
+.monitor-component {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    height: 80vh;
+    background-color: #d6d6d6;
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    margin: auto;
+}
+
+.monitor-eval-button-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+    margin-bottom: auto;
+}
+
+.monitor-eval-button {
+    width: 20rem;
+    height: 4rem;
+    border: 0.2rem solid black;
+    border-radius: 1rem;
+    font-size: 2rem;
+}

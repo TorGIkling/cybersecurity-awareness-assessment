@@ -1,0 +1,17 @@
+.results-component-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    height: 80vh;
+    background: #d6d6d6;
+    border: 2px solid #000000;
+    border-radius: 1rem;
+    margin: auto;
+}
+
+.back-button {
+    margin-right: auto;
+    margin-bottom: auto;
+}
