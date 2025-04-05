@@ -14,15 +14,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "User_ID")
-    private int user_id;
-    @Column(name = "Email")
+    private int userId;
+    @Column(name = "email")
     private String email;
-    @Column(name = "UserName")
+    @Column(name = "username")
     private String username;
+    @Column(name = "password")
+    private String password;
     @Column(name = "Organization_ID")
     private int organization_id;
-    @Column(name = "Role")
-    private String role;
-    @Column(name = "Has_Answered")
+    @Column(name = "has_answered")
     private boolean hasAnswered;
+    @Column(name = "role")
+    private String role;
+
 }
