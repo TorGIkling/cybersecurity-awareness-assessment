@@ -1,4 +1,4 @@
-package ntnu.master.assessment.cybersecurityawareness.model;
+package ntnu.master.assessment.cybersecurityawareness.persistance.entity;
 
 
 import jakarta.persistence.*;
@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @RequiredArgsConstructor
 @Entity
-public class UserModel {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "User_ID")

@@ -1,4 +1,4 @@
-package ntnu.master.assessment.cybersecurityawareness.model;
+package ntnu.master.assessment.cybersecurityawareness.persistance.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Entity
 @RequiredArgsConstructor
-public class OrganizationModel {
+public class Organization {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
