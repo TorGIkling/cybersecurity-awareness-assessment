@@ -17,13 +17,13 @@ public class Result {
     private int resultId;
     @Column(name = "User_ID")
     private int userId;
-    @Column(name = "Phishing_score")
+    @Column(name = "phishing")
     private double phishingScore;
-    @Column(name = "BestPractice_score")
+    @Column(name = "best_practice")
     private double bestPracticeScore;
-    @Column(name = "SocialEngineering_score")
+    @Column(name = "social_engineering")
     private double socialEngineeringScore;
-    @Column(name = "PhysicalSecurity_score")
+    @Column(name = "physical_security")
     private double physicalSecurityScore;
     @Column(name = "Organization_ID")
     private int organizationId;

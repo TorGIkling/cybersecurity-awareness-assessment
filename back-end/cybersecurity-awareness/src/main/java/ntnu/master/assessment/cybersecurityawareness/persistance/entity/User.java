@@ -22,7 +22,7 @@ public class User {
     @Column(name = "password")
     private String password;
     @Column(name = "Organization_ID")
-    private int organization_id;
+    private int organizationId;
     @Column(name = "has_answered")
     private boolean hasAnswered;
     @Column(name = "role")

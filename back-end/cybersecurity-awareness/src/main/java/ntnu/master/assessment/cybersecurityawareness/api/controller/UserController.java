@@ -1,5 +1,6 @@
 package ntnu.master.assessment.cybersecurityawareness.api.controller;
 
+import com.mysql.cj.protocol.Message;
 import ntnu.master.assessment.cybersecurityawareness.api.dto.UserRequestDto;
 import ntnu.master.assessment.cybersecurityawareness.persistance.entity.User;
 import ntnu.master.assessment.cybersecurityawareness.service.UserService;
@@ -23,10 +24,10 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users")
-    public ResponseEntity getAllUsers() {
+    @GetMapping("/users/{id}")
+    public ResponseEntity getAllUsersByOrgId(@PathVariable int id) {
         try {
-            List<User> users = userService.getUsers();
+            List<User> users = userService.getUsersByOrgId(id);
             return ResponseEntity.ok(users);
         } catch (RuntimeException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.EMPTY_LIST);
@@ -35,13 +36,33 @@ public class UserController {
         }
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserRequestDto> getUserById(@PathVariable int id) {
+    @GetMapping("/getUser/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable int id) {
         try {
-            UserRequestDto userRequestDto = userService.getUserDtoById(id);
-            return ResponseEntity.ok(userRequestDto);
+            User user = userService.getUserById(id);
+            return ResponseEntity.ok(user);
         } catch (Exception e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/getUserByEmail/{email}")
+    public ResponseEntity<User> getUserByName(@PathVariable String email) {
+        try {
+            User user = userService.getUserByEmail(email);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/addUser")
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        try {
+            User addedUser = userService.addUser(user);
+            return ResponseEntity.ok(addedUser);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 

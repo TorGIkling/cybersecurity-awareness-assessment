@@ -14,7 +14,7 @@ public class Organization {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Organization_ID")
-    private int organizationID;
-    @Column(name = "Name")
+    private int organizationId;
+    @Column(name = "name")
     private String name;
 }

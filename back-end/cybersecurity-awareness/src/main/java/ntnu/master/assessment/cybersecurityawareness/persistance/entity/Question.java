@@ -17,14 +17,14 @@ public class Question {
     private int questionID;
     @Column(name = "Survey_ID")
     private int surveyID;
-    @Column(name = "Question_Text")
+    @Column(name = "question_Text")
     private String questionText;
-    @Column(name = "High_Text")
+    @Column(name = "high_text")
     private String highText;
-    @Column(name = "Low_Text")
+    @Column(name = "low_text")
     private String lowText;
-    @Column(name = "Middle_Text")
-    private String middleText;
-    @Column(name = "Category")
+    @Column(name = "category")
     private String category;
+    @Column(name = "middle_text")
+    private String middleText;
 }

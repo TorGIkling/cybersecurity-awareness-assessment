@@ -1,12 +1,10 @@
 package ntnu.master.assessment.cybersecurityawareness.service;
 
-import ntnu.master.assessment.cybersecurityawareness.api.dto.UserRequestDto;
 import ntnu.master.assessment.cybersecurityawareness.persistance.entity.User;
 import ntnu.master.assessment.cybersecurityawareness.persistance.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,23 +17,21 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUsers() {
-        List<User> users = userRepository.findAll();
+    public List<User> getUsersByOrgId(int id) {
+        List<User> users = userRepository.findAllByOrganizationId(id);
         return users;
     }
 
-    public UserRequestDto getUserDtoById(int id) {
-        User userEntity = userRepository.getUserByUserId(id);
+    public User getUserById(int id) {
+        return userRepository.getUserByUserId(id);
+    }
 
-        return UserRequestDto.builder()
-                .user_id(userEntity.getUserId())
-                .email(userEntity.getEmail())
-                .username(userEntity.getUsername())
-                .password(userEntity.getPassword())
-                .organization_id(userEntity.getOrganization_id())
-                .role(userEntity.getRole())
-                .hasAnswered(userEntity.isHasAnswered())
-                .build();
+    public User getUserByEmail(String email) {
+        return userRepository.getUsersByEmail(email);
+    }
+
+    public User addUser(User newUser) {
+        return userRepository.save(newUser);
     }
 
 }
