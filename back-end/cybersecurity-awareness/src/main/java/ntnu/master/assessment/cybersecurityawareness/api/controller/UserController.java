@@ -15,7 +15,6 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/api")
 public class UserController {
 
 
@@ -27,7 +26,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    public ResponseEntity getAllUsersByOrgId(@PathVariable int id) {
+    public ResponseEntity<List<User>> getAllUsersByOrgId(@PathVariable int id) {
         try {
             List<User> users = userService.getUsersByOrgId(id);
             return ResponseEntity.ok(users);
