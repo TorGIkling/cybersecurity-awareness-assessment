@@ -34,4 +34,17 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
+    public User updatePassword(int id, String newPassword, String oldPassword) {
+        String currentPassword = userRepository.getUserByUserId(id).getPassword();
+        User user = userRepository.getUserByUserId(id);
+
+
+        if (!currentPassword.equals(oldPassword)) {
+            throw new IllegalArgumentException("Old password is incorrect.");
+        } else {
+            user.setPassword(newPassword);
+            return userRepository.save(user);
+        }
+    }
+
 }

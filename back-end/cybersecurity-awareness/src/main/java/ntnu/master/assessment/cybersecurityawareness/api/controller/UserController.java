@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.service.annotation.PutExchange;
 
 import java.util.List;
 import java.util.Collections;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -66,5 +68,17 @@ public class UserController {
         }
     }
 
+    @PutMapping("/{id}/updatePassword")
+    public ResponseEntity<User> updatePassword(@PathVariable int id, @RequestBody Map<String, String> password) {
+        try {
+            String newPassword = password.get("newPassword");
+            String oldPassword = password.get("oldPassword");
+
+            User user = userService.updatePassword(id, newPassword, oldPassword);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
 
 }
