@@ -15,8 +15,8 @@ public class Result {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "Result_ID")
     private int resultId;
-    @Column(name = "User_ID")
-    private int userId;
+    @Column(name = "Survey_ID")
+    private int surveyId;
     @Column(name = "phishing")
     private double phishingScore;
     @Column(name = "best_practice")
@@ -25,7 +25,4 @@ public class Result {
     private double socialEngineeringScore;
     @Column(name = "physical_security")
     private double physicalSecurityScore;
-    @Column(name = "Organization_ID")
-    private int organizationId;
-
 }

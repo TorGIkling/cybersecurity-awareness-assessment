@@ -40,7 +40,7 @@ public class QuestionController {
         }
     }
 
-    @PostMapping("/addQuesiton")
+    @PostMapping("/addQuestion")
     public ResponseEntity<Question> addQuestion(@RequestBody Question question) {
         try {
             Question newQuestion = questionService.addQuestion(question);
