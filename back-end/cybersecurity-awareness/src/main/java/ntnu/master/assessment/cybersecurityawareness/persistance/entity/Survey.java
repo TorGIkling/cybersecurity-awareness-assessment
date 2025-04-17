@@ -16,7 +16,7 @@ public class Survey {
     @Column(name = "Survey_ID")
     private int surveyID;
     @Column(name = "survey_name")
-    private String surveyName;
+    private String name;
     @Column(name = "Organization_ID")
     private int organizationID;
 

@@ -5,7 +5,6 @@ import ntnu.master.assessment.cybersecurityawareness.persistance.entity.Organiza
 import ntnu.master.assessment.cybersecurityawareness.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,8 +31,20 @@ public class OrganizationController {
         }
     }
 
+    @GetMapping("getOrg/{id}")
+    public ResponseEntity<Organization> getOrganizationById(@PathVariable("id") int id) {
+        try {
+            Organization organization = organizationService.getOrgById(id);
+
+            return ResponseEntity.ok(organization);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @GetMapping("/getOrg/{name}")
-    public ResponseEntity<Organization> getOrganization(@PathVariable String name) {
+    public ResponseEntity<Organization> getOrganizationById(@PathVariable String name) {
         try {
             Organization organization = organizationService.getOrgByName(name);
             return ResponseEntity.ok(organization);

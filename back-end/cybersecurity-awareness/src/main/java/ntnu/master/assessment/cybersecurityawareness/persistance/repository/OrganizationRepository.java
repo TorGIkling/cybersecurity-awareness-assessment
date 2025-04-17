@@ -13,4 +13,6 @@ public interface OrganizationRepository extends CrudRepository<Organization, Int
     List<Organization> findAll();
 
     Organization findByName(String name);
+
+    Organization getOrganizationByOrganizationId(int organizationId);
 }

@@ -18,8 +18,7 @@ public class UserService {
     }
 
     public List<User> getUsersByOrgId(int id) {
-        List<User> users = userRepository.findAllByOrganizationId(id);
-        return users;
+        return userRepository.findAllByOrganizationId(id);
     }
 
     public User getUserById(int id) {
@@ -45,6 +44,12 @@ public class UserService {
             user.setPassword(newPassword);
             return userRepository.save(user);
         }
+    }
+
+    public User updateHasAnswered(int id, boolean hasAnswered) {
+        User user = userRepository.getUserByUserId(id);
+        user.setHasAnswered(hasAnswered);
+        return userRepository.save(user);
     }
 
 }

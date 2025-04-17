@@ -22,6 +22,10 @@ public class OrganizationService {
         return organizationRepository.findAll();
     }
 
+    public Organization getOrgById(int id) {
+        return organizationRepository.getOrganizationByOrganizationId(id);
+    }
+
     public Organization getOrgByName(String name) {
         return organizationRepository.findByName(name);
     }
@@ -29,4 +33,5 @@ public class OrganizationService {
     public Organization addOrg(Organization org) {
         return organizationRepository.save(org);
     }
+
 }
