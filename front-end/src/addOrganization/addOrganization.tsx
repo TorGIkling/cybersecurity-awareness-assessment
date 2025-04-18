@@ -20,10 +20,9 @@ function AddOrganization() {
             return;
         }
 
-        const sanitizedInput = inputValue.replace(/[<>;'"`]/g, "");
-
-        if (inputValue !== sanitizedInput) {
-            alert("Ugyldige tegn i organisasjonsnavn");
+        const isValid = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(inputValue);
+        if (!isValid) {
+            alert("Organisasjonens navn kan kun inneholde bokstaver og tall");
             return;
         }
 
@@ -33,7 +32,7 @@ function AddOrganization() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ name: sanitizedInput }),
+                body: JSON.stringify({ name: inputValue }),
             })
 
             if (response.ok) {
