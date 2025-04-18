@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class OrganizationController {
 
     private final OrganizationService organizationService;
@@ -26,7 +27,7 @@ public class OrganizationController {
             List<Organization> organizations = organizationService.getAllOrgs();
             return ResponseEntity.ok(organizations);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }

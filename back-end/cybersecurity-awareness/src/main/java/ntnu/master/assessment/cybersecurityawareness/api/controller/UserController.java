@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
 
