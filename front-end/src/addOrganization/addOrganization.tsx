@@ -10,7 +10,38 @@ function AddOrganization() {
     }
 
     const handleAddOrganization = async () => {
-        navigate("/organizations");
+        let path = "/addOrg"
+        const inputElement = document.querySelector(".add-organization-input") as HTMLInputElement;
+        const inputValue = inputElement?.value.trim();
+
+        //Check if input is empty
+        if (inputValue === "" || inputValue === null) {
+            alert("Organisasjonens navn kan ikke være tomt");
+            return;
+        }
+
+        const sanitizedInput = inputValue.replace(/[<>;'"`]/g, "");
+
+        try {
+            const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ name: sanitizedInput }),
+            })
+
+            if (response.ok) {
+                alert("Organisasjon lagt til");
+                inputElement.value = "";
+            } else {
+                alert("Organisasjon kunne ikke legges til");
+            }
+        } catch (error) {
+            console.error("Error adding organization:", error);
+            alert("Det oppstod en feil under oppretting av organisasjonen.");
+        }
+
     }
 
     return (
