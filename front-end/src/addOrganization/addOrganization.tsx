@@ -22,6 +22,11 @@ function AddOrganization() {
 
         const sanitizedInput = inputValue.replace(/[<>;'"`]/g, "");
 
+        if (inputValue !== sanitizedInput) {
+            alert("Ugyldige tegn i organisasjonsnavn");
+            return;
+        }
+
         try {
             const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {
                 method: "POST",
