@@ -1,6 +1,6 @@
 import './userList.css'
 import {useState, useEffect, useRef} from "react";
-import {useLocation, useNavigate} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 
 interface User {
     userId: number;
@@ -16,9 +16,7 @@ interface User {
 
 function UserList() {
     const [user, setUser] = useState<User[]>([]);
-    const {organizationId, name} = useLocation().state as {organizationId: number, name: string};
-
-    const navigate = useNavigate();
+    const {organizationId} = useLocation().state as {organizationId: number};
     const didFetchRef = useRef(false);
 
     useEffect(() => {

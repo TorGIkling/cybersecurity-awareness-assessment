@@ -1,14 +1,15 @@
 import './userOrganizationList.css'
 import Header from "../components/header/header";
 import UserList from "../components/userList/userList";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 function UserOrganizationList() {
 
     const navigate = useNavigate();
+    const {organizationId} = useLocation().state as {organizationId: number};
 
     const handleNewUserClick = () => {
-        navigate("/addUser");
+        navigate("/addUser", { state: { organizationId} });
     }
 
     const handleBackClick = () => {

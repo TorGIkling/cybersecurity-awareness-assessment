@@ -30,6 +30,16 @@
     font-size: 2rem;
 }
 
+.new-user-role {
+    width: 30vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+    margin: 0.5rem;
+    font-size: 2rem;
+}
+
 .add-user-btn {
     width: 15vw;
     height: 4rem;

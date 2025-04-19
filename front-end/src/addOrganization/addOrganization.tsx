@@ -10,7 +10,7 @@ function AddOrganization() {
     }
 
     const handleAddOrganization = async () => {
-        let path = "/addOrg"
+        let path = "/addOrg";
         const inputElement = document.querySelector(".add-organization-input") as HTMLInputElement;
         const inputValue = inputElement?.value.trim();
 
