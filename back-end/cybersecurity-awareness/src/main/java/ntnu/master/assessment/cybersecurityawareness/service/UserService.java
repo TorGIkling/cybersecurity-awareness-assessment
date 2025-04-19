@@ -3,6 +3,7 @@ package ntnu.master.assessment.cybersecurityawareness.service;
 import ntnu.master.assessment.cybersecurityawareness.persistance.entity.User;
 import ntnu.master.assessment.cybersecurityawareness.persistance.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,10 +12,12 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public List<User> getUsersByOrgId(int id) {
@@ -29,21 +32,26 @@ public class UserService {
         return userRepository.getUsersByEmail(email);
     }
 
-    public User addUser(User newUser) {
-        return userRepository.save(newUser);
+    public User addUser(User user) {
+
+        String hashedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hashedPassword);
+
+        return userRepository.save(user);
     }
 
     public User updatePassword(int id, String newPassword, String oldPassword) {
-        String currentPassword = userRepository.getUserByUserId(id).getPassword();
         User user = userRepository.getUserByUserId(id);
+        String currentPassword = userRepository.getUserByUserId(id).getPassword();
 
 
-        if (!currentPassword.equals(oldPassword)) {
+        if (!passwordEncoder.matches(oldPassword, currentPassword)) {
             throw new IllegalArgumentException("Old password is incorrect.");
-        } else {
-            user.setPassword(newPassword);
-            return userRepository.save(user);
         }
+        
+        user.setPassword(newPassword);
+        return userRepository.save(user);
+
     }
 
     public User updateHasAnswered(int id, boolean hasAnswered) {

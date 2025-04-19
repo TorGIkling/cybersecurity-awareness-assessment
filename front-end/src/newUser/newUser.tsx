@@ -27,7 +27,7 @@ function NewUser() {
         const usernameValue = usernameInput?.value.trim();
         const passwordValue = passwordInput?.value.trim();
         const roleValue = roleSelect?.value;
-        console.log(roleValue);
+
 
         //
 
