@@ -1,5 +1,6 @@
 package ntnu.master.assessment.cybersecurityawareness.api.controller;
 
+import ntnu.master.assessment.cybersecurityawareness.api.dto.LoginRequestDTO;
 import ntnu.master.assessment.cybersecurityawareness.persistance.entity.User;
 import ntnu.master.assessment.cybersecurityawareness.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,19 @@ public class UserController {
             return ResponseEntity.ok(addedUser);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<User> login(@RequestBody LoginRequestDTO loginRequest) {
+        try {
+            User user = new User();
+            user.setEmail(loginRequest.getEmail());
+            user.setPassword(loginRequest.getPassword());
+            User userLogin = userService.loginUser(user);
+            return ResponseEntity.ok(userLogin);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
 

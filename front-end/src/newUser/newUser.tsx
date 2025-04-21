@@ -1,22 +1,17 @@
 import './newUser.css'
 import {useLocation, useNavigate} from "react-router-dom";
-import bcrypt from "bcryptjs";
 
 function NewUser() {
 
     const navigate = useNavigate();
     const {organizationId} = useLocation().state as {organizationId: number};
-    const hashPassword = async (password: string) => {
-        const saltRounds = 10;
-        return await bcrypt.hash(password, saltRounds);
-    }
+
 
     const handleBackClick = () => {
         navigate('/userList' , { state: { organizationId } });
     }
 
     const handleAddUserClick = async () => {
-
 
         let path = "/addUser";
         const emailInput = document.querySelector(".new-user-input[type='email']") as HTMLInputElement;
@@ -48,14 +43,11 @@ function NewUser() {
             return;
         }
 
-        //Hash password
-        const hashedPassword = await hashPassword(passwordValue);
-
         const payload = {
             organizationId: organizationId,
             email: emailValue,
             username: usernameValue,
-            password: hashedPassword,
+            password: passwordValue,
             role: roleValue
         }
 
