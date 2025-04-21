@@ -86,6 +86,7 @@ function NewUser() {
                     <option value="Employee">Ansatt</option>
                     <option value="Evaluator">Evaluatør</option>
                     <option value="Manager">Leder</option>
+                    <option value="Admin">Administrator</option>
                 </select>
                 <button className="add-user-btn" type="submit" onClick={handleAddUserClick}>Legg til bruker</button>
             </div>

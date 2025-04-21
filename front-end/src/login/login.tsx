@@ -37,8 +37,6 @@ function Login() {
                 email: emailValue,
                 password: passwordValue
             }
-            console.log("emailValue: ", emailValue);
-            console.log("passwordValue: ", passwordValue);
             const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {
                 method: "POST",
                 headers: {
