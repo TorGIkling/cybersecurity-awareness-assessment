@@ -2,6 +2,8 @@ import './login.css';
 import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {AuthContext} from "../components/AuthProvider";
+import React from "react";
+
 
 function Login() {
 
@@ -48,7 +50,8 @@ function Login() {
             if (response.ok) {
                 const data = await response.json();
                 const token = data.token;
-                login(token);
+                const refreshToken = data.refreshToken;
+                login(token, refreshToken)
                 navigate("/");
             } else {
                 alert("Det oppstod en feil under innloggingen. Sjekk epost og passord.");

@@ -2,6 +2,7 @@ package ntnu.master.assessment.cybersecurityawareness.api.controller;
 
 import ntnu.master.assessment.cybersecurityawareness.api.dto.LoginRequestDTO;
 import ntnu.master.assessment.cybersecurityawareness.persistance.entity.User;
+import ntnu.master.assessment.cybersecurityawareness.service.TokenService;
 import ntnu.master.assessment.cybersecurityawareness.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,12 @@ public class UserController {
 
 
     private final UserService userService;
+    private final TokenService tokenService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService , TokenService tokenService) {
         this.userService = userService;
+        this.tokenService = tokenService;
     }
 
     @GetMapping("/users/{id}")
@@ -68,17 +71,38 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> login(@RequestBody LoginRequestDTO loginRequest) {
+    public ResponseEntity<Map<String,String>> login(@RequestBody LoginRequestDTO loginRequest) {
         try {
             User user = new User();
             user.setEmail(loginRequest.getEmail());
             user.setPassword(loginRequest.getPassword());
             User userLogin = userService.loginUser(user);
-            return ResponseEntity.ok(userLogin);
+
+            String token = tokenService.generateToken(userLogin.getEmail(), userLogin.getUsername(), userLogin.getOrganizationId(), userLogin.getRole());
+            String refreshToken = tokenService.generateToken(user.getEmail(), user.getUsername(), user.getOrganizationId(), user.getRole());
+            return ResponseEntity.ok(Map.of(
+                    "token", token,
+                    "refreshToken", refreshToken
+            ));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
+
+    @PostMapping("/refresh")
+    public ResponseEntity<Map<String,String>> refreshToken(@RequestBody Map<String, String> token) {
+        try {
+            String oldToken = token.get("token");
+            String email = tokenService.getEmailFromToken(oldToken);
+            User user = userService.getUserByEmail(email);
+
+            String newToken = tokenService.generateToken(user.getEmail(), user.getUsername(), user.getOrganizationId(), user.getRole());
+            return ResponseEntity.ok(Collections.singletonMap("token", newToken));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+    }
+
 
     @PutMapping("/{id}/updatePassword")
     public ResponseEntity<User> updatePassword(@PathVariable int id, @RequestBody Map<String, String> password) {

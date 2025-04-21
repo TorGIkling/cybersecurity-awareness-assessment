@@ -13,13 +13,15 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails {
 
     private final String username;
+    private final String email;
     private final String password;
     private final int orgId;
     private final String role;
     private final Collection<? extends GrantedAuthority> authorities;
 
-    public CustomUserDetails(String username,String password , int orgId, String role, Collection<? extends GrantedAuthority> authorities) {
+    public CustomUserDetails(String username,String email,String password , int orgId, String role, Collection<? extends GrantedAuthority> authorities) {
         this.username = username;
+        this.email = email;
         this.password = password;
         this.orgId = orgId;
         this.role = role;
