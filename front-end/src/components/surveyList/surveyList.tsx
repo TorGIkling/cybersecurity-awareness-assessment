@@ -41,14 +41,14 @@ function SurveyList() {
     }
 
     const handleEditSurvey = async (survey: Survey) => {
-        navigate("/survey", {state: {surveyId: survey.surveyId, name: survey.name}});
+        navigate("/questions", {state: {surveyId: survey.surveyId, name: survey.name}});
     }
     return (
         <div className="survey-list">
-            {surveys.map((org) => (
-                <div className="survey-list-item" key={org.organizationId}>
-                    <p className={"survey-list-text"}>{org.name}</p>
-                    <button onClick={() => handleEditSurvey(org)} className={"survey-list-button"} type={"button"}>Rediger Undersøkelse</button>
+            {surveys.map((survey) => (
+                <div className="survey-list-item" key={survey.organizationId}>
+                    <p className={"survey-list-text"}>{survey.name}</p>
+                    <button onClick={() => handleEditSurvey(survey)} className={"survey-list-button"} type={"button"}>Rediger Undersøkelse</button>
                 </div>
             ))}
         </div>

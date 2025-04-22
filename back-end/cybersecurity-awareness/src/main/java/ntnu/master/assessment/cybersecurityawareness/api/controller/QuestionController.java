@@ -31,7 +31,7 @@ public class QuestionController {
         }
     }
 
-    @GetMapping("/getQuestionBySurveyID/{id}")
+    @GetMapping("/questionBySurveyID/{id}")
     public ResponseEntity<List<Question>> getQuestionBySurveyID(@PathVariable int id) {
         try {
             List<Question> questions = questionService.getQuestionsBySurveyId(id);

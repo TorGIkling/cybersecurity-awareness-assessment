@@ -3,19 +3,27 @@ import SurveyList from "../components/surveyList/surveyList";
 import "./surveys.css";
 import {useNavigate} from "react-router-dom";
 
+
 function Surveys() {
 
     const navigate = useNavigate();
 
+
     const handleNewSurvey = async () => {
         navigate("/addSurvey");
+    }
+    const handleBackBtn = async () => {
+        navigate("/organizations");
     }
 
     return (
         <div className={"surveys-page"}>
             <Header/>
             <SurveyList/>
-            <button className={"survey-page-button"} onClick={handleNewSurvey}>Ny undersøkelse</button>
+            <div className={"survey-page-btn-row"}>
+                <button className={"survey-page-back-button"} onClick={handleBackBtn}>Tilbake</button>
+                <button className={"survey-page-button"} onClick={handleNewSurvey}>Ny undersøkelse</button>
+            </div>
         </div>
     );
 }

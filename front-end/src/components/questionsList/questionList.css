@@ -1,0 +1,13 @@
+.questionList-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: black solid 2px;
+    border-radius: 1rem;
+    width: 80vw;
+    height: 80vh;
+    background-color: #d6d6d6;
+    overflow: hidden;
+    margin: auto;
+}

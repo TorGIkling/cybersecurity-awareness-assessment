@@ -17,6 +17,8 @@ import EvaluatorRoute from "./routes/evaluatorRoute";
 import ManagerRoute from "./routes/managerRoute";
 import AddSurvey from "./addSurvey/addSurvey";
 import Surveys from "./surveys/surveys";
+import AddQuestion from "./addQuestion/addQuestion";
+import Questions from "./questions/questions";
 
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
             <Route path="/addOrganization" element={<AdminRoute><AddOrganization/></AdminRoute>} />
             <Route path="/addSurvey" element={<AdminRoute><AddSurvey/></AdminRoute>} />
             <Route path="/surveys" element={<AdminRoute><Surveys/></AdminRoute>} />
+            <Route path="/addQuestion" element={<AdminRoute><AddQuestion/></AdminRoute>} />
+            <Route path="/questions" element={<AdminRoute><Questions/></AdminRoute>} />
             <Route path="/organizations" element={<AdminRoute><OrganizationsPage/></AdminRoute>} />
             <Route path="/addUser" element={<AdminRoute><NewUser/></AdminRoute>} />
             <Route path="/userList" element={<AdminRoute><UserOrganizationList/></AdminRoute>} />

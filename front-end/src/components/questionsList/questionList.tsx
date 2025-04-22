@@ -1,0 +1,57 @@
+import {useEffect, useRef, useState} from "react";
+import {useLocation, useNavigate} from "react-router-dom";
+import './questionList.css'
+
+interface Question {
+    surveyId: number;
+    questionText: string;
+    highText: string;
+    lowText: string;
+    category: string;
+    middleText: string;
+}
+
+function QuestionList() {
+    const [questions, setQuestions] = useState<Question[]>([]);
+
+    const {surveyId} = useLocation().state as {surveyId: number};
+    const navigate = useNavigate();
+    const didFetchRef = useRef(false)
+
+    useEffect(() => {
+        if (!didFetchRef.current) {
+            didFetchRef.current = true;
+            loadQuestionList()
+        }
+    })
+
+    const loadQuestionList = async () => {
+        let path = "/questionBySurveyID/" + surveyId;
+        const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+        if (!response.ok) {
+            console.error("Failed to fetch questions");
+            alert("Feil under henting av spørsmål");
+            return;
+        }
+        const json = await response.json();
+        setQuestions(json);
+    }
+
+    return (
+        <div className="questionList-page">
+            {questions.map((question) => (
+                <div className="questionList-list-item">
+                    <p className="questionList-list-text">{question.questionText}</p>
+                    <p className="questionList-list-text">{question.category}</p>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+export default QuestionList;

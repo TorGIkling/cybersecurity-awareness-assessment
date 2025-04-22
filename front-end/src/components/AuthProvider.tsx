@@ -1,4 +1,4 @@
-import React, {useState, createContext, useEffect} from 'react';
+import React, {useState, createContext, useEffect, useLayoutEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {jwtDecode} from "jwt-decode";
 
@@ -7,6 +7,7 @@ interface AuthContextType {
     username: string | null;
     organizationId: number | null;
     role: string | null;
+    loading: boolean;
     login: (token: string, refreshToken: string) => void;
     logout: () => void;
 }
@@ -16,38 +17,62 @@ interface DecodedToken {
     email: string;
     organizationId: number;
     role: string;
+    exp: number;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
 
 function AuthProvider ({children}: {children: React.ReactNode}) {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState<string | null>(null);
     const [organizationId, setOrganizationId] = useState<number | null>(null);
     const [role, setRole] = useState<string | null>(null);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = localStorage.getItem('authToken');
-        const refreshToken = localStorage.getItem('refreshToken');
-        if (token) {
-            const isValid = validateToken(token);
-            setIsAuthenticated(isValid);
+    useLayoutEffect(() => {
+        const initAuth = () => {
+            const token = localStorage.getItem('authToken');
+            const refreshToken = localStorage.getItem('refreshToken');
+            let isValid = false;
+            if (token) {
+                isValid = validateToken(token);
+
+                if (isValid) {
+                    const decodedToken: DecodedToken = JSON.parse(atob(token.split('.')[1]));
+                    console.log('Decoded Token:',decodedToken);
+                    setUsername(decodedToken.username);
+                    setOrganizationId(decodedToken.organizationId);
+                    setRole(decodedToken.role);
+                    setIsAuthenticated(true);
+                    console.log('authenticated:',isAuthenticated);
+                    scheduleTokenRefresh(token, refreshToken!);
+                } else {
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('refreshToken');
+
+
+                }
+            }
+
             if (!isValid) {
-                localStorage.removeItem('authToken');
-                const decodedToken: DecodedToken = JSON.parse(atob(token.split('.')[1]));
-                setUsername(decodedToken.username);
-                setOrganizationId(decodedToken.organizationId);
-                setRole(decodedToken.role);
-                scheduleTokenRefresh(token, refreshToken!);
+                setIsAuthenticated(false);
                 navigate('/login');
             }
+            setLoading(false);
         }
-    },[])
+        initAuth();
+    },[navigate]);
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            console.log('authenticated');
+        }
+    }, [isAuthenticated]);
 
     const validateToken = (token: string): boolean => {
         try {
-            const payload = JSON.parse(atob(token.split('.')[1]));
+            const payload = jwtDecode<DecodedToken>(token);
             return payload.exp * 1000 > Date.now();
         }catch {
             return false;
@@ -55,7 +80,7 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
     }
 
     const scheduleTokenRefresh = (token: string, refreshToken: string) => {
-        const payload = JSON .parse(atob(token.split('.')[1]));
+        const payload = jwtDecode<DecodedToken>(token);
         const expiresIn = payload.exp * 1000 - Date.now() - 5000; //Triggers refresh 5 sec before expiration
         if (expiresIn > 0) {
             setTimeout(() => {refreshAccessToken(refreshToken)}, expiresIn);
@@ -125,7 +150,7 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated,username, organizationId, role , login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated,username, organizationId, role, loading , login, logout }}>
             {children}
         </AuthContext.Provider>
     );

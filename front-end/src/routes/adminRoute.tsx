@@ -4,8 +4,11 @@ import {AuthContext} from "../components/AuthProvider";
 import React from "react";
 
 function AdminRoute({children}: {children: JSX.Element}) {
-   const {isAuthenticated, role} = useContext(AuthContext)!;
+   const {isAuthenticated, role, loading} = useContext(AuthContext)!;
 
+   if (loading) {
+         return <div>Loading...</div>;
+   }
    if(!isAuthenticated) {
        return <Navigate to="/login"/>;
    } else if(role !== "Admin") {
@@ -13,7 +16,6 @@ function AdminRoute({children}: {children: JSX.Element}) {
    } else {
        return children;
    }
-
 
 }
 
