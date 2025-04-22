@@ -1,0 +1,73 @@
+.add-question-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff;
+}
+
+.add-question-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    height: 80vh;
+    border: 2px solid black;
+    border-radius: 1rem;
+    background-color: #d6d6d6;
+    overflow: hidden;
+}
+
+.add-question-input {
+    width: 50%;
+    height: 5rem;
+    font-size: 2rem;
+    padding: 0.5rem;
+    margin: 1rem auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.add-question-select {
+    width: 50%;
+    height: 5rem;
+    font-size: 2rem;
+    padding: 0.5rem;
+    margin: 1rem auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.add-question-btn-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100vw;
+    height: 10vh;
+}
+
+.add-question-add-btn {
+    width: 15vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+    margin: 2rem 10vw auto auto;
+    font-size: 2rem;
+    background-color: #d6d6d6;
+}
+
+.add-question-back-btn {
+    width: 15vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+    margin: 2rem auto auto 10vw;
+    font-size: 2rem;
+    background-color: #d6d6d6;
+}

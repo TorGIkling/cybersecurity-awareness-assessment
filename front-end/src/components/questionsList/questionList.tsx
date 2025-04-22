@@ -15,7 +15,6 @@ function QuestionList() {
     const [questions, setQuestions] = useState<Question[]>([]);
 
     const {surveyId} = useLocation().state as {surveyId: number};
-    const navigate = useNavigate();
     const didFetchRef = useRef(false)
 
     useEffect(() => {
@@ -45,9 +44,9 @@ function QuestionList() {
     return (
         <div className="questionList-page">
             {questions.map((question) => (
-                <div className="questionList-list-item">
-                    <p className="questionList-list-text">{question.questionText}</p>
-                    <p className="questionList-list-text">{question.category}</p>
+                <div className="question-list-item">
+                    <p className="question-list-text">{question.questionText}</p>
+                    <p className="question-list-text">{question.category}</p>
                 </div>
             ))}
         </div>

@@ -109,7 +109,7 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
             login(token, refreshToken);
         } else {
             console.error("Failed to refresh token");
-            alert("Feil under oppfriskning av token");
+
         }
     }
 
@@ -145,7 +145,6 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
         setUsername(null);
         setOrganizationId(null);
         setRole(null);
-        alert("Du er logget ut");
         navigate('/login');
     }
 
