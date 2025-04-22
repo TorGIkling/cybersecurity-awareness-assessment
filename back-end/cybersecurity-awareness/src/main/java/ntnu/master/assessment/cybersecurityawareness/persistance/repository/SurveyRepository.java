@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface SurveyRepository extends CrudRepository<Survey, Integer> {
-    Survey getSurveyBySurveyID(int id);
+    Survey getSurveyBySurveyId(int id);
 
-    List<Survey> getSurveysByOrganizationID(int orgId);
+    List<Survey> getSurveysByOrganizationId(int orgId);
 
     Survey getSurveyByName(String name);
 }

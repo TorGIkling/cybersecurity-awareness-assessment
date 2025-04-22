@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.Email;
+
 @Getter
 @Setter
 @RequiredArgsConstructor
@@ -18,6 +20,7 @@ public class User {
     @Column(name = "Organization_ID")
     private int organizationId;
     @Column(name = "email")
+    @Email(message = "Invalid email format")
     private String email;
     @Column(name = "username")
     private String username;

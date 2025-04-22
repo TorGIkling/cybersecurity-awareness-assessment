@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -56,7 +57,7 @@ public class OrganizationController {
     }
 
     @PostMapping("/addOrg")
-    public ResponseEntity<Organization> addOrganization(@RequestBody Organization organization) {
+    public ResponseEntity<Organization> addOrganization(@Valid @RequestBody Organization organization) {
         try {
             Organization newOrg = organizationService.addOrg(organization);
             return ResponseEntity.ok(newOrg);

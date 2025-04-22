@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotEmpty;
+
 @Setter
 @Getter
 @Entity
@@ -16,5 +18,6 @@ public class Organization {
     @Column(name = "Organization_ID")
     private int organizationId;
     @Column(name = "name")
+    @NotEmpty(message = "Organization name is required")
     private String name;
 }

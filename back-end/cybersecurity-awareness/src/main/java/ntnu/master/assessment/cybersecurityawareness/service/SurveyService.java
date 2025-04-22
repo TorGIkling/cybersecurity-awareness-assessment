@@ -17,12 +17,16 @@ public class SurveyService {
         this.surveyRepository = surveyRepository;
     }
 
+    public List<Survey> getAllSurveys() {
+        return (List<Survey>) surveyRepository.findAll();
+    }
+
     public Survey getSurveyById(int id) {
-        return surveyRepository.getSurveyBySurveyID(id);
+        return surveyRepository.getSurveyBySurveyId(id);
     }
 
     public List<Survey> getSurveysByOrgId(int orgId) {
-        return surveyRepository.getSurveysByOrganizationID(orgId);
+        return surveyRepository.getSurveysByOrganizationId(orgId);
     }
 
     public Survey getSurveyByName(String name) {

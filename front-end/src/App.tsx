@@ -1,6 +1,6 @@
 
 import './App.css';
-import {Routes, Route, Navigate} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import HomePage from "./homePage/homePage";
 import Login from "./login/login";
 import AddOrganization from "./addOrganization/addOrganization";
@@ -11,11 +11,12 @@ import Results from "./results/results";
 import StartSurvey from "./startSurvey/startSurvey";
 import MonitorEvaluation from "./monitorEvaluation/monitorEvaluation";
 import DeliverSurvey from "./deliverSurvey/deliverSurvey";
-import {JSX} from "react";
 import AdminRoute from "./routes/adminRoute";
 import EmployeeRoute from "./routes/employeeRoute";
 import EvaluatorRoute from "./routes/evaluatorRoute";
 import ManagerRoute from "./routes/managerRoute";
+import AddSurvey from "./addSurvey/addSurvey";
+import Surveys from "./surveys/surveys";
 
 
 function App() {
@@ -25,6 +26,8 @@ function App() {
             <Route path="/" element={<EmployeeRoute><HomePage/></EmployeeRoute>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/addOrganization" element={<AdminRoute><AddOrganization/></AdminRoute>} />
+            <Route path="/addSurvey" element={<AdminRoute><AddSurvey/></AdminRoute>} />
+            <Route path="/surveys" element={<AdminRoute><Surveys/></AdminRoute>} />
             <Route path="/organizations" element={<AdminRoute><OrganizationsPage/></AdminRoute>} />
             <Route path="/addUser" element={<AdminRoute><NewUser/></AdminRoute>} />
             <Route path="/userList" element={<AdminRoute><UserOrganizationList/></AdminRoute>} />

@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Collections;
 import java.util.Map;
@@ -61,7 +62,7 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
+    public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
         try {
             User addedUser = userService.addUser(user);
             return ResponseEntity.ok(addedUser);
@@ -71,7 +72,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Map<String,String>> login(@RequestBody LoginRequestDTO loginRequest) {
+    public ResponseEntity<Map<String,String>> login(@Valid @RequestBody LoginRequestDTO loginRequest) {
         try {
             User user = new User();
             user.setEmail(loginRequest.getEmail());

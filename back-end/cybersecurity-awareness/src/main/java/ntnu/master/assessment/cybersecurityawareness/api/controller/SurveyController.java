@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -18,6 +19,17 @@ public class SurveyController {
     @Autowired
     public SurveyController(SurveyService surveyService) {
         this.surveyService = surveyService;
+    }
+
+    @GetMapping("/surveys")
+    public ResponseEntity<List<Survey>> getSurveys() {
+        try {
+            List<Survey> surveys = surveyService.getAllSurveys();
+            return ResponseEntity.ok(surveys);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     @GetMapping("/getSurvey/{id}")
@@ -53,8 +65,8 @@ public class SurveyController {
         }
     }
 
-    @PostMapping("/createSurvey")
-    public ResponseEntity<Survey> createSurvey(@RequestBody Survey survey) {
+    @PostMapping("/addSurvey")
+    public ResponseEntity<Survey> createSurvey(@Valid @RequestBody Survey survey) {
         try {
             Survey newSurvey = surveyService.addSurvey(survey);
             return ResponseEntity.ok(newSurvey);
