@@ -34,7 +34,7 @@ function QuestionList() {
         });
         if (!response.ok) {
             console.error("Failed to fetch questions");
-            alert("Feil under henting av spørsmål");
+            alert("Could not fetch questions");
             return;
         }
         const json = await response.json();

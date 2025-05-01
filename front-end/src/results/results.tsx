@@ -16,7 +16,7 @@ function Results() {
         <div className='results-container'>
             <Header />
             <ResultsComponent/>
-            <button className='back-button' onClick={handelBackButton}>Tilbake</button>
+            <button className='back-button' onClick={handelBackButton}>Back</button>
         </div>
     );
 }

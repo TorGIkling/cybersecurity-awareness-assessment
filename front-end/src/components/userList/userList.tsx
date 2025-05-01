@@ -36,7 +36,7 @@ function UserList() {
         });
         if (!response.ok) {
             console.error("Failed to fetch users");
-            alert("Feil under henting av brukere");
+            alert("Users could not be fetched");
             return;
         }
 

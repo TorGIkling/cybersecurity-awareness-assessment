@@ -133,7 +133,7 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
             navigate('/');
         }catch (error) {
             console.error("Error decoding token:", error);
-            alert("Ugyldig token under innlogging");
+            alert("Invalid token during sign in");
         }
 
     };

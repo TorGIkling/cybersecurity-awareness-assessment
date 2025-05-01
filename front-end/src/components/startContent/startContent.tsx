@@ -18,8 +18,8 @@ function StartContent() {
         <div className="start-content">
             <a className='survey-title'> Cybersecurity Awareness Assessment </a>
             <div className='start-survey-btn-row'>
-                <button className='start-survey-btn' type='button' onClick={handelBackButton}>Tilbake</button>
-                <button className='start-survey-btn' type='button' onClick={handleStartButton}>Start undesøkelsen</button>
+                <button className='start-survey-btn' type='button' onClick={handelBackButton}>Back</button>
+                <button className='start-survey-btn' type='button' onClick={handleStartButton}>Start Survey</button>
             </div>
         </div>
     );

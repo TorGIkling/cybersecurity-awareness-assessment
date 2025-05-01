@@ -32,7 +32,7 @@ function SurveyList() {
         });
         if (!response.ok) {
             console.error("Failed to fetch surveys");
-            alert("Feil under henting av undersøkelser");
+            alert("Could not fetch surveys");
             return;
         }
         const json = await response.json();
@@ -48,7 +48,7 @@ function SurveyList() {
             {surveys.map((survey) => (
                 <div className="survey-list-item" key={survey.organizationId}>
                     <p className={"survey-list-text"}>{survey.name}</p>
-                    <button onClick={() => handleEditSurvey(survey)} className={"survey-list-button"} type={"button"}>Rediger Undersøkelse</button>
+                    <button onClick={() => handleEditSurvey(survey)} className={"survey-list-button"} type={"button"}>Edit Survey</button>
                 </div>
             ))}
         </div>

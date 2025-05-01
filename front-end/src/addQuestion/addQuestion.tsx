@@ -21,7 +21,7 @@ function AddQuestion() {
 
         //Check if inputs are empty
         if (questionText === "" || highText === "" || middleText === "" || lowText === "" || category === "") {
-            alert("Alle felt må fylles ut");
+            alert("All fields are required");
             return;
         }
 
@@ -31,7 +31,7 @@ function AddQuestion() {
         const isValidMiddleText = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(middleText);
         const isValidLowText = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(lowText);
         if (!isValidQuestionText || !isValidHighText || !isValidMiddleText || !isValidLowText) {
-            alert("Ugyldig input");
+            alert("Invalid input");
             return;
         }
 
@@ -53,16 +53,16 @@ function AddQuestion() {
                 body: JSON.stringify(payload),
             });
             if (response.ok) {
-                alert("Spørsmålet ble lagt til");
+                alert("The question was added successfully");
                 navigate("/questions", {state: {surveyId: surveyId}});
             } else {
                 const errorText = await response.text();
                 console.error("Failed to add question:", errorText);
-                alert("Feil under oppretting av spørsmål");
+                alert("Could not add question");
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Feil under oppretting av spørsmål");
+            alert("Could not add question");
         }
 
     }
@@ -70,20 +70,19 @@ function AddQuestion() {
     return (
         <div className="add-question-page">
             <div className="add-question-container">
-                <input className="add-question-input" id="questionText" type="text" placeholder="Spørsmål"/>
-                <input className="add-question-input" id="highText" type="text" placeholder="Text for 5"/>
-                <input className="add-question-input" id="middleText" type="text" placeholder="Text for 3"/>
-                <input className="add-question-input" id="lowText" type="text" placeholder="Text for 1"/>
+                <input className="add-question-input" id="questionText" type="text" placeholder="Question"/>
+                <input className="add-question-input" id="highText" type="text" placeholder="Text for highest value"/>
+                <input className="add-question-input" id="middleText" type="text" placeholder="Text for middle value"/>
+                <input className="add-question-input" id="lowText" type="text" placeholder="Text for worst vlue"/>
                 <select className="add-question-select" id="category" >
-                    <option value="" hidden selected disabled>Velg Kategori</option>
+                    <option value="" hidden selected disabled>Choose category</option>
                     <option value="Physical Security">Physical Security</option>
                     <option value="Phishing">Phishing</option>
-                    <option value="Social Engineering">Social Engineering</option>
                 </select>
             </div>
             <div className="add-question-btn-row">
-                <button className="add-question-back-btn" onClick={handleBackButton}>Tilbake</button>
-                <button className="add-question-add-btn" onClick={handleAddQuestion}>Legg til spørsmål</button>
+                <button className="add-question-back-btn" onClick={handleBackButton}>Back</button>
+                <button className="add-question-add-btn" onClick={handleAddQuestion}>Add Question</button>
             </div>
         </div>
     );

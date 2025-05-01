@@ -16,14 +16,14 @@ function AddSurvey() {
         const surveyNameValue = surveyNameInput?.value.trim();
 
         if (surveyNameValue === "") {
-            alert("Du må fylle ut navn på undersøkelsen");
+            alert("All fields are required");
             return;
         }
 
         const isValidSurveyName = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(surveyNameValue);
 
         if (!isValidSurveyName) {
-            alert("Ugyldig navn på undersøkelsen");
+            alert("Invalid survey name");
             return;
         }
         const payload = {
@@ -39,16 +39,16 @@ function AddSurvey() {
                 body: JSON.stringify(payload),
             });
             if (response.ok) {
-                alert("Undersøkelsen ble lagt til");
+                alert("Survey added successfully");
                 navigate("/surveys");
             } else {
                 const errorText = await response.text();
                 console.error("Failed to add survey:", errorText);
-                alert("Feil under oppretting av undersøkelse");
+                alert("Could not add survey");
             }
         } catch (error) {
             console.error("Error:", error);
-            alert("Feil under oppretting av undersøkelse");
+            alert("Could not add survey");
         }
     }
     return (
@@ -56,8 +56,8 @@ function AddSurvey() {
             <div className="add-survey-container">
                 <input className="add-survey-input-text" type="text" placeholder="Navn på Undesøkelsen" />
                 <div className="add-survey-btn-row">
-                    <button className="add-survey-back-btn" type="submit" onClick={handlebackButton}>Tilbake</button>
-                    <button className="add-survey-btn" type="submit" onClick={handleAddSurvey}>Legg til Undesøkelse</button>
+                    <button className="add-survey-back-btn" type="submit" onClick={handlebackButton}>Back</button>
+                    <button className="add-survey-btn" type="submit" onClick={handleAddSurvey}>Add Survey</button>
                 </div>
 
             </div>

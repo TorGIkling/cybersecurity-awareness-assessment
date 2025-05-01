@@ -21,8 +21,8 @@ function Questions() {
             <Header />
             <QuestionList />
             <div className="questions-page-btn-row">
-                <button className="questions-page-back-button" onClick={handleBackButton}>Tilbake</button>
-                <button className="questions-page-button" onClick={handleAddQuestion}>Legg til spørsmål</button>
+                <button className="questions-page-back-button" onClick={handleBackButton}>Back</button>
+                <button className="questions-page-button" onClick={handleAddQuestion}>Add Question</button>
             </div>
         </div>
     );

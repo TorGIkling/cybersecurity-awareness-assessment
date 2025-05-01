@@ -39,7 +39,7 @@ function OrganizationList() {
             {org.map((org) => (
             <div className="organization-list-item" key={org.organizationId}>
                 <p className={"organization-list-text"}>{org.name}</p>
-                <button onClick={() => handleEditOrgBtn(org)} className={"organization-list-button"} type={"button"}>Rediger Organisasjon</button>
+                <button onClick={() => handleEditOrgBtn(org)} className={"organization-list-button"} type={"button"}>Edit Organizations</button>
             </div>
             ))}
         </div>

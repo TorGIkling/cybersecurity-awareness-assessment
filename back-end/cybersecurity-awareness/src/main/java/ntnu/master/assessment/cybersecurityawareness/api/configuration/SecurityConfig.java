@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())// Disable CSRF protection
                 .cors(cors -> {})
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/").permitAll() // Allow all requests to /api/v1/auth/**
+                        .requestMatchers("/login").permitAll() // Allow all requests to /api/v1/auth/**
                         .anyRequest().permitAll() // All other requests require authentication
                 );
         return http.build();

@@ -22,8 +22,8 @@ function MonitorEvaluation() {
             <Header/>
             <MonitorComponent/>
             <div className="monitor-eval-button-row">
-                <button className='monitor-eval-button' onClick={handleBackButton}>Tilbake</button>
-                <button className='monitor-eval-button' onClick={handleEndEvaluation}>Avslutt Evaluering</button>
+                <button className='monitor-eval-button' onClick={handleBackButton}>Back</button>
+                <button className='monitor-eval-button' onClick={handleEndEvaluation}>End Evaluation</button>
             </div>
         </div>
     );

@@ -22,14 +22,14 @@ function Login() {
             const passwordValue = passwordInput.value.trim();
 
             if (emailValue === "" || passwordValue === "") {
-                alert("Alle felt må fylles ut");
+                alert("All fields are required");
                 return;
             }
             //Check if inputs are valid
             const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue);
             if (!isValidEmail) {
                 console.log(emailValue);
-                alert("Ugyldig epost");
+                alert("Invalid email");
                 return;
             }
 
@@ -52,11 +52,11 @@ function Login() {
                 login(token, refreshToken)
                 navigate("/");
             } else {
-                alert("Det oppstod en feil under innloggingen. Sjekk epost og passord.");
+                alert("An error occurred during login check your email and password");
             }
         } catch (error) {
             console.error("Error during login:", error);
-            alert("Det oppstod en feil under innloggingen.");
+            alert("An error occurred during login.");
         }
 
     }
@@ -66,13 +66,13 @@ function Login() {
             <div className="login-container">
                 <p className="title-text"> Logg inn her! </p>
                 <div className="input-container">
-                    <input className="card-input" placeholder="Epost" type="email" />
+                    <input id="email" className="card-input" placeholder="Email" type="email" />
                 </div>
                 <div className="input-container">
-                    <input className="card-input" placeholder="Passord" type="password" />
+                    <input id="password" className="card-input" placeholder="Password" type="password" />
                 </div>
                 <div className="input-container">
-                    <button className="login-btn" type="submit" onClick={handleLoginClick}>Logg inn</button>
+                    <button className="login-btn" type="submit" onClick={handleLoginClick}>Sign in</button>
                 </div>
             </div>
         </form>

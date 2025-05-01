@@ -21,8 +21,8 @@ function OrganizationsPage() {
             <Header/>
             <OrganizationList/>
             <div className="organization-btn-row">
-                <button className="survey-btn" type="submit" onClick={handleCreateSurvey}>Undersøkelser</button>
-                <button className="add-organization-btn" type="button" onClick={handleAddOrganization}>Ny Organisasjon</button>
+                <button className="survey-btn" type="submit" onClick={handleCreateSurvey}>Surveys</button>
+                <button className="add-organization-btn" type="button" onClick={handleAddOrganization}>Add Organization</button>
             </div>
         </div>
     )
