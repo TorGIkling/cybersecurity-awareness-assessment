@@ -1,4 +1,7 @@
-import { useEffect, useState} from "react";
+import {useContext, useEffect, useRef, useState} from "react";
+import {AuthContext} from "../AuthProvider";
+import {useLocation} from "react-router-dom";
+
 
 type Step = {
     questionText: string;
@@ -15,10 +18,16 @@ function UseMultistepForm() {
     const [currentStepIndex, setCurrentStepIndex] = useState(0);
     const [steps, setSteps] = useState<Step[]>([]);
     const [loading, setLoading] = useState(true);
+    const location = useLocation();
+    const surveyId = location.state?.surveyId;
+    const didFetchRef = useRef(false);
 
     useEffect(() => {
-        getSurveyQuestions();
-    } , []);
+        if (!didFetchRef.current) {
+            didFetchRef.current = true;
+            getSurveyQuestions();
+        }
+    } , [surveyId]);
 
 
     useEffect(() => {
@@ -26,7 +35,7 @@ function UseMultistepForm() {
     }, [currentStepIndex]);
     const getSurveyQuestions = async () => {
         try {
-            let path = "/questionBySurveyID/" + 2;
+            let path = "/questionBySurveyID/" + surveyId;
             const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {
                 method: "GET",
                 headers: {

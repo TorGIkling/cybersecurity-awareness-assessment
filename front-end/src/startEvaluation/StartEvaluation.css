@@ -1,4 +1,4 @@
-.monitor-evaluation {
+.start-evaluation-container {
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -7,19 +7,22 @@
     height: 100vh;
 }
 
-.monitor-eval-button-row {
+.start-evaluation-btn-row {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     width: 80vw;
-    margin-bottom: auto;
+    height: 10vh;
 }
 
-.monitor-eval-button {
-    width: 20rem;
+.back-eval-button {
+    width: 20vw;
     height: 4rem;
-    border: 0.2rem solid black;
+    padding: 0.5rem;
+    border: solid 2px black;
     border-radius: 1rem;
+    margin: 1rem auto auto 0;
     font-size: 2rem;
+    background-color: #d6d6d6;
 }

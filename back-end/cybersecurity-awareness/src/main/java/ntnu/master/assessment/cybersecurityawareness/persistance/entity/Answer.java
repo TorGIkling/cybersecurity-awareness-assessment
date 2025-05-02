@@ -23,6 +23,6 @@ public class Answer {
     @Column(name = "answer")
     private double answer;
 
-    @Column(name = "Survey_ID")
-    private int surveyId;
+    @Column(name = "Organization_ID")
+    private int organizationId;
 }

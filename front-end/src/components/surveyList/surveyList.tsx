@@ -7,6 +7,7 @@ interface Survey {
     surveyId: number;
     name: string;
     organizationId: number;
+    isActive: boolean;
 }
 
 function SurveyList() {
@@ -28,6 +29,7 @@ function SurveyList() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("authToken"),
             },
         });
         if (!response.ok) {

@@ -1,5 +1,5 @@
 import {createContext, ReactNode, useContext} from "react";
-import UseMultistepForm from "./useMultistepForm";
+import UseMultistepForm from "../components/useMultistepForm/useMultistepForm";
 
 const MultistepFormContext = createContext<any>(null);
 

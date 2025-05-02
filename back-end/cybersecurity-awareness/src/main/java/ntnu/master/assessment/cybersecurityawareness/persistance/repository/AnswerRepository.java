@@ -13,5 +13,5 @@ public interface AnswerRepository extends CrudRepository<Answer, Integer> {
 
     List<Answer> getAnswersByQuestionId(int questionId);
 
-    List<Answer> getAnswersBySurveyId(int surveyId);
+    List<Answer> getAnswersByOrganizationId(int organizationId);
 }

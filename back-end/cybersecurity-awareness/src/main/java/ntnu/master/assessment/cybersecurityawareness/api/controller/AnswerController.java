@@ -40,10 +40,10 @@ public class AnswerController {
         }
     }
 
-    @GetMapping("/getAnswerBySId/{id}")
-    public ResponseEntity<List<Answer>> getAnswerBySId(@PathVariable int id) {
+    @GetMapping("/getAnswerByOrgId/{id}")
+    public ResponseEntity<List<Answer>> getAnswerByOrgId(@PathVariable int id) {
         try {
-            List<Answer> answers = answerService.getAnswersBySurveyId(id);
+            List<Answer> answers = answerService.getAnswersByOrgId(id);
             return ResponseEntity.ok(answers);
         } catch (Exception e) {
             System.out.println(e.getMessage());

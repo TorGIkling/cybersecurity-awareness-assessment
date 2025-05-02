@@ -1,5 +1,6 @@
 package ntnu.master.assessment.cybersecurityawareness.api.controller;
 
+import ntnu.master.assessment.cybersecurityawareness.api.dto.updateSurveyDTO;
 import ntnu.master.assessment.cybersecurityawareness.persistance.entity.Survey;
 import ntnu.master.assessment.cybersecurityawareness.service.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,19 @@ public class SurveyController {
         try {
             Survey newSurvey = surveyService.addSurvey(survey);
             return ResponseEntity.ok(newSurvey);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @PutMapping("/updateSurvey/{id}")
+    public ResponseEntity<Survey> updateSurveyOrgId(@PathVariable int id, @RequestBody updateSurveyDTO surveyDTO) {
+        try {
+            Integer orgIdValue = surveyDTO.getOrganizationId();
+            boolean isActive = surveyDTO.isActive();
+            Survey updatedSurvey = surveyService.updateSurveyOrgId(id, orgIdValue , isActive);
+            return ResponseEntity.ok(updatedSurvey);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();

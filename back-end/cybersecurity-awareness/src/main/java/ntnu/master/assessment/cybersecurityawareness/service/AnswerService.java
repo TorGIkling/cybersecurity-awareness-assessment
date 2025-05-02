@@ -25,8 +25,8 @@ public class AnswerService {
         return answerRepository.getAnswersByQuestionId(questionId);
     }
 
-    public List<Answer> getAnswersBySurveyId(int surveyId) {
-        return answerRepository.getAnswersBySurveyId(surveyId);
+    public List<Answer> getAnswersByOrgId(int surveyId) {
+        return answerRepository.getAnswersByOrganizationId(surveyId);
     }
 
     public Answer addAnswer(Answer answer) {

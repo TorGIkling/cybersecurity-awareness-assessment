@@ -36,4 +36,15 @@ public class SurveyService {
     public Survey addSurvey(Survey survey) {
         return surveyRepository.save(survey);
     }
+
+    public Survey updateSurveyOrgId(int id, Integer orgId, boolean isActive) {
+        Survey survey = surveyRepository.getSurveyBySurveyId(id);
+        if (survey != null) {
+            survey.setOrganizationId(orgId);
+            survey.setActive(isActive);
+            return surveyRepository.save(survey);
+        }
+        return null;
+
+    }
 }

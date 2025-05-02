@@ -26,10 +26,10 @@ function AddQuestion() {
         }
 
         //Check if inputs are valid
-        const isValidQuestionText = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(questionText);
-        const isValidHighText = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(highText);
-        const isValidMiddleText = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(middleText);
-        const isValidLowText = /^[a-zA-Z0-9æøåÆØÅ\s]+$/.test(lowText);
+        const isValidQuestionText = /^[a-zA-Z0-9æøåÆØÅ\s?]+$/.test(questionText);
+        const isValidHighText = /^[a-zA-Z0-9æøåÆØÅ\s,]+$/.test(highText);
+        const isValidMiddleText = /^[a-zA-Z0-9æøåÆØÅ\s,]+$/.test(middleText);
+        const isValidLowText = /^[a-zA-Z0-9æøåÆØÅ\s,]+$/.test(lowText);
         if (!isValidQuestionText || !isValidHighText || !isValidMiddleText || !isValidLowText) {
             alert("Invalid input");
             return;
@@ -77,6 +77,7 @@ function AddQuestion() {
                 <input className="add-question-input" id="lowText" type="text" placeholder="Text for worst vlue"/>
                 <select className="add-question-select" id="category" >
                     <option value="" hidden selected disabled>Choose category</option>
+                    <option value="Best Practice">Best Practice</option>
                     <option value="Physical Security">Physical Security</option>
                     <option value="Phishing">Phishing</option>
                 </select>

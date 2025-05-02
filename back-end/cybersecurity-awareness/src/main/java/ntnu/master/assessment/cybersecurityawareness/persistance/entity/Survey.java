@@ -12,7 +12,6 @@ import javax.validation.constraints.NotEmpty;
 @Getter
 @RequiredArgsConstructor
 public class Survey {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Survey_ID")
@@ -22,5 +21,6 @@ public class Survey {
     private String name;
     @Column(name = "Organization_ID", nullable = true)
     private Integer organizationId;
-
+    @Column(name = "is_active")
+    private boolean isActive;
 }
