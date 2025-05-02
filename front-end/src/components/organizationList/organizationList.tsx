@@ -25,7 +25,18 @@ function OrganizationList() {
 
     const loadOrganizationList = async () => {
         let path = "/orgs";
-        const res = await fetch(process.env.REACT_APP_REST_API_URL + path);
+        const res = await fetch(process.env.REACT_APP_REST_API_URL + path, {
+            method: "GET",
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("authToken"),
+                "Content-Type": "application/json",
+            }
+        });
+        if (!res.ok) {
+            console.error("Failed to fetch organizations");
+            alert("Organizations could not be fetched");
+            return;
+        }
         const json = await res.json();
         console.log(json);
         setOrg(json);

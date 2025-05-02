@@ -21,7 +21,7 @@ function Header() {
     return (
       <div className="header-content">
           <img className="header-img" src={(homeIcon)} alt="Home" onClick={homeClick} />
-          <a className='username-txt' onClick={homeClick}>{username || "Username"}</a>
+          <p className='username-txt' onClick={homeClick}>{username || "Username"}</p>
           <img className="logout-img" src={logoutIcon} alt="Logout" onClick={handleLogOut}/>
       </div>
     );

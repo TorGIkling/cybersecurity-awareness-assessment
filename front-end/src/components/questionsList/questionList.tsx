@@ -30,6 +30,7 @@ function QuestionList() {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("authToken"),
             },
         });
         if (!response.ok) {

@@ -11,7 +11,7 @@ function StartContent() {
     };
 
     const handleStartButton = () => {
-        navigate('/finishSurvey');
+        navigate('/survey');
     }
 
     return (

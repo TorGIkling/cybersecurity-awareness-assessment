@@ -19,6 +19,7 @@ import AddSurvey from "./addSurvey/addSurvey";
 import Surveys from "./surveys/surveys";
 import AddQuestion from "./addQuestion/addQuestion";
 import Questions from "./questions/questions";
+import SurveyPage from "./surveyPage/surveyPage";
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
             <Route path="/userList" element={<AdminRoute><UserOrganizationList/></AdminRoute>} />
             <Route path="/result" element={<ManagerRoute><Results/></ManagerRoute>} />
             <Route path="/startSurvey" element={<EmployeeRoute><StartSurvey/></EmployeeRoute>} />
+            <Route path="/survey" element={<EmployeeRoute><SurveyPage/></EmployeeRoute>}/>
             <Route path="/monitorEval" element={<EvaluatorRoute><MonitorEvaluation/></EvaluatorRoute>} />
             <Route path="/finishSurvey" element={<EmployeeRoute><DeliverSurvey/></EmployeeRoute>} />
         </Routes>

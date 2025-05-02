@@ -1,0 +1,119 @@
+.form-component {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+
+.form-component-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    margin: auto;
+    width: 80vw;
+    height: 80vh;
+    border: 2px solid black;
+    border-radius: 1rem;
+    background-color: #d6d6d6;
+    overflow: hidden;
+}
+
+.form-upper-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: start;
+    margin: 1rem 10rem 1rem 1rem;
+    width: 80vw;
+    height: 10vh;
+    font-size: 2.5rem;
+}
+
+.form-question-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;
+    width: 100vw;
+    height: 7rem;
+}
+
+.form-answer-element{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin: auto;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    width: 75vw;
+    height: 7rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border: 2px solid black;
+
+}
+
+.form-answer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    width: 80vw;
+    height: 7rem;
+}
+
+.form-rad-btn {
+    width: 5rem;
+    height: 5rem;
+}
+
+
+.empty-text {
+    height: 5rem;
+    width: 5rem;
+}
+.survey-page-btn-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    width: 95vw;
+    height: 10vh;
+}
+
+.survey-page-prev-btn {
+    width: 20vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+    margin: 2rem auto auto 10vw;
+    font-size: 2rem;
+    background-color: #ffffff;
+}
+
+.survey-page-next-btn {
+    width: 20vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+    margin: 2rem 10vw auto auto;
+    font-size: 2rem;
+    background-color: #ffffff;
+}
+
+
+
