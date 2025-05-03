@@ -21,7 +21,7 @@ public class Answer {
     private int questionId;
 
     @Column(name = "answer")
-    private double answer;
+    private int answer;
 
     @Column(name = "Organization_ID")
     private int organizationId;

@@ -6,17 +6,10 @@ import {useNavigate} from "react-router-dom";
 import {useContext, useEffect, useRef, useState} from "react";
 import {AuthContext} from "../components/AuthProvider";
 
-interface survey {
-    surveyId: number;
-    name: string;
-    organizationId: number;
-    active: boolean;
-}
 
 
 function MonitorEvaluation() {
     const [surveyActive, setSurveyActive] = useState(false);
-    const [survey, setSurvey] = useState<survey[]>([]);
     const didFetchRef = useRef(false);
     const navigate = useNavigate();
     const organizationId = useContext(AuthContext)?.organizationId;
@@ -26,7 +19,7 @@ function MonitorEvaluation() {
     };
 
     const handleEndEvaluation = async () => {
-        navigate("/");
+        navigate("/endEval");
     };
 
     const handleStartEval = async () => {
@@ -62,7 +55,6 @@ function MonitorEvaluation() {
                 setSurveyActive(true);
             }
         }
-        setSurvey(json);
     }
 
     return (

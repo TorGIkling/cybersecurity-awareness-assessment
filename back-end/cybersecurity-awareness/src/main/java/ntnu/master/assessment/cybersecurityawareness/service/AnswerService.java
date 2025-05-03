@@ -29,8 +29,8 @@ public class AnswerService {
         return answerRepository.getAnswersByOrganizationId(surveyId);
     }
 
-    public Answer addAnswer(Answer answer) {
-        return answerRepository.save(answer);
+    public List<Answer> addAnswer(List<Answer> answer) {
+        return (List<Answer>) answerRepository.saveAll(answer);
     }
 
 }

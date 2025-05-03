@@ -51,11 +51,11 @@ public class AnswerController {
         }
     }
 
-    @PostMapping("/addAnswer")
-    public ResponseEntity<Answer> addAnswer(@RequestBody Answer answer) {
+    @PostMapping("/submitAnswers")
+    public ResponseEntity<List<Answer>> addAnswer(@RequestBody List<Answer> answers) {
         try {
-            Answer newAnswer = answerService.addAnswer(answer);
-            return ResponseEntity.ok(newAnswer);
+            List<Answer> submittedAnswers = answerService.addAnswer(answers);
+            return ResponseEntity.ok(submittedAnswers);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return ResponseEntity.internalServerError().build();

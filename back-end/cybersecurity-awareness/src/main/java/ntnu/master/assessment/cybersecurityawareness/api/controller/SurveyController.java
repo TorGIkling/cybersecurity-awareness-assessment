@@ -66,6 +66,18 @@ public class SurveyController {
         }
     }
 
+    @GetMapping("/getActiveSurveys/{orgId}")
+    public ResponseEntity<List<Survey>> getActiveSurveysByOrgId(@PathVariable Integer orgId) {
+        try {
+
+            List<Survey> surveys = surveyService.getActiveSurveysByOrgId(orgId);
+            return ResponseEntity.ok(surveys);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @PostMapping("/addSurvey")
     public ResponseEntity<Survey> createSurvey(@Valid @RequestBody Survey survey) {
         try {

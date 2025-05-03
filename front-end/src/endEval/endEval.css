@@ -1,0 +1,28 @@
+.end-eval-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.end-eval-btn-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    width: 80vw;
+    height: 10vh;
+}
+
+.end-eval-back-btn {
+    width: 15vw;
+    height: 4rem;
+    padding: 0.5rem;
+    border: solid 2px black;
+    border-radius: 1rem;
+    margin: 1rem auto auto 0;
+    font-size: 2.4rem;
+    background-color: #d6d6d6;
+}

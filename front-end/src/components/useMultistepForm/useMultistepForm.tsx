@@ -9,8 +9,8 @@ type Step = {
     lowText: string;
     middleText: string;
     category: string;
-    questionId: number;
-    surveyId: number;
+    questionID: number;
+    surveyID: number;
 }
 
 
@@ -32,6 +32,8 @@ function UseMultistepForm() {
 
     useEffect(() => {
         console.log("Updated CurrentStep:", currentStepIndex);
+        console.log("Steps:", steps);
+        console.log("Current Step:", steps[currentStepIndex]);
     }, [currentStepIndex]);
     const getSurveyQuestions = async () => {
         try {

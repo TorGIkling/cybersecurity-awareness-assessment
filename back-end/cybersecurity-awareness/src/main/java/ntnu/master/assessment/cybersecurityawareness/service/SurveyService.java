@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.util.Arrays.stream;
+
 @Service
 public class SurveyService {
 
@@ -27,6 +29,14 @@ public class SurveyService {
 
     public List<Survey> getSurveysByOrgId(int orgId) {
         return surveyRepository.getSurveysByOrganizationId(orgId);
+    }
+
+    public List<Survey> getActiveSurveysByOrgId(int orgId) {
+        List<Survey> surveys = surveyRepository.getSurveysByOrganizationId(orgId);
+
+        return surveys.stream()
+                .filter(Survey::isActive)
+                .toList();
     }
 
     public Survey getSurveyByName(String name) {

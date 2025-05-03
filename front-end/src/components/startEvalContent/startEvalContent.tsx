@@ -7,7 +7,7 @@ interface Survey {
     surveyId: number;
     name: string;
     organizationId: number;
-    isActive: boolean;
+    active: boolean;
 }
 
 function StartEvalContent() {
@@ -30,7 +30,7 @@ function StartEvalContent() {
 
         const payload = {
             organizationId: OrganizationId,
-            isActive: true,
+            active: true,
         }
 
         const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {

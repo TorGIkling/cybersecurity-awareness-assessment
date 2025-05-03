@@ -21,6 +21,7 @@ import AddQuestion from "./addQuestion/addQuestion";
 import Questions from "./questions/questions";
 import SurveyPage from "./surveyPage/surveyPage";
 import StartEvaluation from "./startEvaluation/startEvaluation";
+import EndEval from "./endEval/endEval";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
             <Route path="/survey" element={<EmployeeRoute><SurveyPage/></EmployeeRoute>}/>
             <Route path="/monitor" element={<EvaluatorRoute><MonitorEvaluation/></EvaluatorRoute>} />
             <Route path="/startEval" element={<EvaluatorRoute><StartEvaluation/></EvaluatorRoute>} />
+            <Route path="/endEval" element={<EvaluatorRoute><EndEval/></EvaluatorRoute>} />
             <Route path="/finishSurvey" element={<EmployeeRoute><DeliverSurvey/></EmployeeRoute>} />
         </Routes>
       </>
