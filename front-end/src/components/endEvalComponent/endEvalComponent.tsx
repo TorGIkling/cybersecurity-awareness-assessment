@@ -1,6 +1,7 @@
 import "./endEvalComponent.css"
 import {useContext, useEffect, useRef, useState} from "react";
 import {AuthContext} from "../AuthProvider";
+import {useNavigate} from "react-router-dom";
 
 interface Survey {
     surveyId: number;
@@ -14,6 +15,8 @@ function EndEvalComponent() {
     const [survey, setSurvey] = useState<Survey[]>([]);
     const didFetchRef = useRef(false);
     const organizationId = useContext(AuthContext)?.organizationId;
+    const userId = useContext(AuthContext)?.userId;
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (!didFetchRef.current) {
@@ -42,6 +45,7 @@ function EndEvalComponent() {
     },
 
     handEndEval = async (surveyID: number) => {
+
         let path = "/updateSurvey/" + surveyID;
         const payload = {
             organizationId: null,
@@ -64,9 +68,10 @@ function EndEvalComponent() {
         const json = await response.json();
         console.log(json);
         alert("Evaluation ended");
-
         setSurvey([]);
+        navigate("/monitor");
     }
+
 
     return (
       <div className="end-eval-component-container">

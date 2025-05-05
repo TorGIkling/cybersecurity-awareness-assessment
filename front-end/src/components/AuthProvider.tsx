@@ -6,7 +6,9 @@ interface AuthContextType {
     isAuthenticated: boolean;
     username: string | null;
     organizationId: number | null;
+    userId: number | null;
     role: string | null;
+    hasAnswered: boolean;
     loading: boolean;
     login: (token: string, refreshToken: string) => void;
     logout: () => void;
@@ -14,8 +16,10 @@ interface AuthContextType {
 
 interface DecodedToken {
     username: string;
+    userId: number;
     email: string;
     organizationId: number;
+    hasAnswered: boolean;
     role: string;
     exp: number;
 }
@@ -27,6 +31,8 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
     const [loading, setLoading] = useState(true);
     const [username, setUsername] = useState<string | null>(null);
     const [organizationId, setOrganizationId] = useState<number | null>(null);
+    const [hasAnswered, setHasAnswered] = useState<boolean>(false);
+    const [userId, setUserId] = useState<number | null>(null);
     const [role, setRole] = useState<string | null>(null);
     const navigate = useNavigate();
 
@@ -42,8 +48,10 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
                     const decodedToken: DecodedToken = JSON.parse(atob(token.split('.')[1]));
                     console.log('Decoded Token:',decodedToken);
                     setUsername(decodedToken.username);
+                    setUserId(decodedToken.userId);
                     setOrganizationId(decodedToken.organizationId);
                     setRole(decodedToken.role);
+                    setHasAnswered(decodedToken.hasAnswered);
                     setIsAuthenticated(true);
                     console.log('authenticated:',isAuthenticated);
                     scheduleTokenRefresh(token, refreshToken!);
@@ -149,7 +157,7 @@ function AuthProvider ({children}: {children: React.ReactNode}) {
     }
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated,username, organizationId, role, loading , login, logout }}>
+        <AuthContext.Provider value={{ isAuthenticated,username, organizationId, userId, role, hasAnswered ,loading , login, logout }}>
             {children}
         </AuthContext.Provider>
     );

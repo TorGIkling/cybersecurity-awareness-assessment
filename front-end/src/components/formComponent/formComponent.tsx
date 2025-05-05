@@ -3,11 +3,13 @@ import "./formComponent.css"
 import {useContext, useEffect, useState} from "react";
 import useMultistepForm from "../useMultistepForm/useMultistepForm";
 import {AuthContext} from "../AuthProvider";
+import {useNavigate} from "react-router-dom";
 
 interface Answer {
     questionId: number;
     answer: number;
     organizationId: number;
+    questionText: string;
 }
 
 function FormComponent() {
@@ -15,11 +17,13 @@ function FormComponent() {
     const [answers, setAnswers] = useState<Answer[]>([]);
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const organizationId = useContext(AuthContext)?.organizationId ?? 0;
+    const userId = useContext(AuthContext)?.userId ?? 0;
     const questionId = step?.questionID;
     const questionText = step?.questionText;
     const lowText = step?.lowText;
     const highText = step?.highText;
     const middleText = step?.middleText;
+    const navigate = useNavigate();
 
     const handleAnswerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (!questionId) {
@@ -34,17 +38,29 @@ function FormComponent() {
         setSelectedAnswer(selectedAnswer);
         const updatedAnswers = [...answers];
         while (updatedAnswers.length <= currentStepIndex) {
-            updatedAnswers.push({questionId: 0, answer: 0, organizationId: 0});
+            updatedAnswers.push({questionId: 0, answer: 0, organizationId: 0, questionText: ""});
         }
         updatedAnswers[currentStepIndex] ={
             questionId: questionId,
             answer: selectedAnswer,
             organizationId: organizationId,
+            questionText: questionText,
         };
         setAnswers(updatedAnswers);
     }
 
     const handleFinishSurvey = async () => {
+        try {
+            await updateHasAnswered();
+            await submitAnswers();
+            navigate("/");
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An Error occurred while submitting the survey");
+        }
+
+    }
+    const submitAnswers = async () => {
         let path = "/submitAnswers";
 
 
@@ -59,13 +75,32 @@ function FormComponent() {
         if (!response.ok) {
             console.error("Failed to submit answers");
             alert("Could not submit answers");
-            return;
+            throw new Error("Failed to submit answers");
         }
         const json = await response.json();
         console.log(json);
         alert("Survey submitted");
     }
 
+    const updateHasAnswered = async () => {
+        let userPath = "/" + userId + "/hasAnswered";
+
+        const userResponse = await fetch(process.env.REACT_APP_REST_API_URL + userPath, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: "Bearer " + localStorage.getItem("authToken"),
+            },
+            body: JSON.stringify(true),
+        });
+        if (!userResponse.ok) {
+            console.error("Failed to update user");
+            alert("Could not update user");
+            throw new Error("Failed to update user");
+        }
+        const jsonUser = await userResponse.json();
+        console.log(jsonUser);
+    }
 
     useEffect(() => {
         console.log("step:", step);

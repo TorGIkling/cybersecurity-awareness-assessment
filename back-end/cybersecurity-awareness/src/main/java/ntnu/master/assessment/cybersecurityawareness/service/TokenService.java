@@ -40,12 +40,14 @@ public class TokenService {
         }
     }
 
-    public String generateToken(String email, String Username, int orgId, String role) {
+    public String generateToken(String email, String Username, int orgId, int userId ,String role, boolean hasAnswered) {
         return Jwts.builder()
                 .setSubject(email)
                 .claim("username", Username)
                 .claim("organizationId", orgId)
+                .claim("userId", userId)
                 .claim("role", role)
+                .claim("hasAnswered", hasAnswered)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))) // 1 hour expiration
                 .signWith(secretKey, SignatureAlgorithm.HS256)

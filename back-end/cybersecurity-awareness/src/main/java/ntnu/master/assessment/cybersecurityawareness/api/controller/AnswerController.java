@@ -40,7 +40,7 @@ public class AnswerController {
         }
     }
 
-    @GetMapping("/getAnswerByOrgId/{id}")
+    @GetMapping("/getAnswersByOrgId/{id}")
     public ResponseEntity<List<Answer>> getAnswerByOrgId(@PathVariable int id) {
         try {
             List<Answer> answers = answerService.getAnswersByOrgId(id);

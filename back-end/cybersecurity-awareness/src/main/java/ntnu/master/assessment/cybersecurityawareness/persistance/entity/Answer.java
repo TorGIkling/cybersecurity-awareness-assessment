@@ -25,4 +25,7 @@ public class Answer {
 
     @Column(name = "Organization_ID")
     private int organizationId;
+
+    @Column(name = "question_text")
+    private String questionText;
 }

@@ -11,7 +11,55 @@
     margin: auto;
 }
 
-.back-button {
-    margin-right: auto;
-    margin-bottom: auto;
+.results-component-top-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.results-component-graph {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 70vh;
+}
+
+.results-component-answers {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
+    margin: 1rem;
+    border: 1px solid #000000;
+}
+
+.results-component-answer-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 5rem;
+    border-bottom: 1px solid #000000;
+}
+
+.results-component-answer-text {
+    font-size: 2rem;
+    text-align: left;
+    width: 100%;
+    margin: 1rem;
+}
+
+.results-component-answer-number {
+    text-align: left;
+    margin-right: 1rem;
+    font-size: 2rem;
 }

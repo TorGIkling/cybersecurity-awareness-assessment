@@ -79,8 +79,8 @@ public class UserController {
             user.setPassword(loginRequest.getPassword());
             User userLogin = userService.loginUser(user);
 
-            String token = tokenService.generateToken(userLogin.getEmail(), userLogin.getUsername(), userLogin.getOrganizationId(), userLogin.getRole());
-            String refreshToken = tokenService.generateToken(user.getEmail(), user.getUsername(), user.getOrganizationId(), user.getRole());
+            String token = tokenService.generateToken(userLogin.getEmail(), userLogin.getUsername(), userLogin.getOrganizationId(), userLogin.getUserId(),userLogin.getRole(), userLogin.isHasAnswered());
+            String refreshToken = tokenService.generateToken(user.getEmail(), user.getUsername(), user.getOrganizationId(),userLogin.getUserId(), user.getRole(), userLogin.isHasAnswered());
             return ResponseEntity.ok(Map.of(
                     "token", token,
                     "refreshToken", refreshToken
@@ -97,7 +97,7 @@ public class UserController {
             String email = tokenService.getEmailFromToken(oldToken);
             User user = userService.getUserByEmail(email);
 
-            String newToken = tokenService.generateToken(user.getEmail(), user.getUsername(), user.getOrganizationId(), user.getRole());
+            String newToken = tokenService.generateToken(user.getEmail(), user.getUsername(), user.getOrganizationId(), user.getUserId(), user.getRole(), user.isHasAnswered());
             return ResponseEntity.ok(Collections.singletonMap("token", newToken));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -119,9 +119,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}/hasAnswered")
-    public ResponseEntity<User> hasAnswered(@PathVariable int id, @RequestBody boolean isUpdated) {
+    public ResponseEntity<User> hasAnswered(@PathVariable int id, @RequestBody boolean hasAnswered) {
         try {
-            User user = userService.updateHasAnswered(id, isUpdated);
+            User user = userService.updateHasAnswered(id, hasAnswered);
             return ResponseEntity.ok(user);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
