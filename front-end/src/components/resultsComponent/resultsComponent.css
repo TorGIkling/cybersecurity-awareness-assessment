@@ -32,7 +32,7 @@
 .results-component-answers {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: start;
     width: 50%;
     height: 100%;

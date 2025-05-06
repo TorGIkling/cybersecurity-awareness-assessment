@@ -26,10 +26,10 @@ function AddQuestion() {
         }
 
         //Check if inputs are valid
-        const isValidQuestionText = /^[a-zA-Z0-9æøåÆØÅ\s?]+$/.test(questionText);
-        const isValidHighText = /^[a-zA-Z0-9æøåÆØÅ\s,]+$/.test(highText);
-        const isValidMiddleText = /^[a-zA-Z0-9æøåÆØÅ\s,]+$/.test(middleText);
-        const isValidLowText = /^[a-zA-Z0-9æøåÆØÅ\s,]+$/.test(lowText);
+        const isValidQuestionText = /^[a-zA-Z0-9æøåÆØÅ\s?,(-).]+$/.test(questionText);
+        const isValidHighText = /^[a-zA-Z0-9æøåÆØÅ\s,(-)]+$/.test(highText);
+        const isValidMiddleText = /^[a-zA-Z0-9æøåÆØÅ\s,(-)]+$/.test(middleText);
+        const isValidLowText = /^[a-zA-Z0-9æøåÆØÅ\s,(-)]+$/.test(lowText);
         if (!isValidQuestionText || !isValidHighText || !isValidMiddleText || !isValidLowText) {
             alert("Invalid input");
             return;
