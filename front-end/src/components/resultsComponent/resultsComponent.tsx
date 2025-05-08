@@ -22,6 +22,7 @@ interface averageAnswer {
 function ResultsComponent() {
     const [answer, setAnswer] = useState<Answer[]>([]);
     const [averagedAnswers, setAveragedAnswers] = useState<averageAnswer[]>([]);
+    const [totalAverage, setTotalAverage] = useState<number>(0);
     const organizationId = useContext(AuthContext)?.organizationId;
     const didFetchRef = useRef(false);
     const [loading , setLoading] = useState(true);
@@ -93,6 +94,14 @@ function ResultsComponent() {
         console.log("averages", averages);
         setAveragedAnswers(averages);
 
+        let total = 0;
+        for (let i = 0; i < averages.length; i += 1) {
+            total += averages[i].average;
+        }
+        const totalAverage = total / averages.length;
+        console.log("Total Average:", totalAverage);
+        setTotalAverage(totalAverage);
+
     }
 
 
@@ -100,7 +109,7 @@ function ResultsComponent() {
         <div className='results-component-container'>
             <div className="results-component-top-row">
                 <div className="results-component-graph">
-                    <BarGraphComponent averageAnswers={averagedAnswers}/>
+                    <BarGraphComponent averageAnswers={averagedAnswers} totalAverage={totalAverage} />
                     <SpiderGraphComponent averageAnswers={averagedAnswers}/>
                 </div>
                 <div className="results-component-answers">

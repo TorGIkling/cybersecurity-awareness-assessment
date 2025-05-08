@@ -20,13 +20,11 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
             {
                 label: "Average Answers",
                 data: averageAnswers.map(answer => answer.average),
-                backgroundColor: "rgba(70,186,189,0.6)",
-                borderColor: "rgba(70,186,189,0.6)",
                 borderWidth: 2,
                 pointBorderColor: averageAnswers.map(answer => {
                     if (answer.average <= 2.5) {
                         return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.average > 2.5 && answer.average <= 3.5) {
+                    } else if (answer.average > 2.5 && answer.average < 4.0) {
                         return "rgba(255, 206, 86, 0.6)";
                     } else {
                         return "rgba(73,201,17,0.6)";
@@ -35,7 +33,25 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
                 pointBackgroundColor: averageAnswers.map(answer => {
                     if (answer.average <= 2.5) {
                         return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.average > 2.5 && answer.average <= 3.5) {
+                    } else if (answer.average > 2.5 && answer.average <= 4.0) {
+                        return "rgba(255, 206, 86, 0.6)";
+                    } else {
+                        return "rgba(73,201,17,0.6)";
+                    }
+                }),
+                backgroundColor: averageAnswers.map((answer) => {
+                    if (answer.average <= 2.5) {
+                        return "rgba(255, 99, 132, 0.6)";
+                    } else if (answer.average > 2.0 && answer.average < 4.0) {
+                        return "rgba(255, 206, 86, 0.6)";
+                    } else {
+                        return "rgba(73,201,17,0.6)";
+                    }
+                }),
+                borderColor: averageAnswers.map((answer) => {
+                    if (answer.average <= 2.5) {
+                        return "rgba(255, 99, 132, 0.6)";
+                    } else if (answer.average > 2.5 && answer.average < 4.0) {
                         return "rgba(255, 206, 86, 0.6)";
                     } else {
                         return "rgba(73,201,17,0.6)";
@@ -59,6 +75,7 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
         plugins: {
             legend: {
                 position: "bottom" as const,
+
             },
             title: {
                 display: true,

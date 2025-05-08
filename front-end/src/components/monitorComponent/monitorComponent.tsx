@@ -53,7 +53,6 @@ function MonitorComponent() {
                 <div className='monitor-user-list-item' key={user.userId}>
                     <p className='monitor-user-list-text'>{user.username}</p>
                     <p className='monitor-user-list-text'>{user.email}</p>
-                    <p className='monitor-user-list-text'>{user.hasAnswered ? "Yes" : "No"}</p>
                 </div>
             ))}
         </div>

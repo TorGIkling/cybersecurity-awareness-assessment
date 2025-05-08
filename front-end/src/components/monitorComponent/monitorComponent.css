@@ -7,6 +7,7 @@
     height: 80vh;
     background-color: #d6d6d6;
     border: 0.2rem solid black;
+    overflow-y: auto;
     border-radius: 1rem;
     margin: auto;
 }
