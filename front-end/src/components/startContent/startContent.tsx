@@ -74,6 +74,10 @@ function StartContent() {
 
         <div className="start-content">
             <a className='survey-title'>{surveyName}</a>
+            <p className="privacy-statement"> Thank you for participating in the {surveyName}.
+                No personally identifying information is collected by the survey and
+                your responses are unable to be tied to your identity by the system or evaluator.
+            </p>
             <div className='start-survey-btn-row'>
                 <button className='start-btn' type='button' onClick={handelBackButton}>Back</button>
                 <button className='start-btn' type='button' onClick={handleStartButton}>Start Survey</button>

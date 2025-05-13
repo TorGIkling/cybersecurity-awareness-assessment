@@ -55,7 +55,7 @@ function AddSurvey() {
     return (
         <div className="add-survey-page">
             <div className="add-survey-container">
-                <input className="add-survey-input-text" type="text" placeholder="Navn på Undesøkelsen" />
+                <input className="add-survey-input-text" type="text" placeholder="Survey Name" />
                 <div className="add-survey-btn-row">
                     <button className="add-survey-back-btn" type="submit" onClick={handlebackButton}>Back</button>
                     <button className="add-survey-btn" type="submit" onClick={handleAddSurvey}>Add Survey</button>

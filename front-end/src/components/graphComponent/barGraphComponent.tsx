@@ -40,16 +40,8 @@ function BarGraphComponent ({averageAnswers, totalAverage, resultType}: GraphCom
                           return "rgba(73,201,17,0.6)";
                    }
                 }),
-                borderColor: answers.map((answer) => {
-                    if (answer.graphNumbers <= 2.5) {
-                        return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.graphNumbers > 2.5 && answer.graphNumbers < 4.0) {
-                        return "rgba(255, 206, 86, 0.6)";
-                    } else {
-                        return "rgba(73,201,17,0.6)";
-                    }
-                }),
-                borderWidth: 2,
+                borderColor: "rgba(0,0,0,1)",
+                borderWidth: 1,
             },
         ],
     };

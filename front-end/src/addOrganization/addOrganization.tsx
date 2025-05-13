@@ -52,7 +52,7 @@ function AddOrganization() {
     return (
       <div className="add-organization">
           <div className="add-organization-container">
-              <input className="add-organization-input" type="text" placeholder="Organisasjonens Navn" />
+              <input className="add-organization-input" type="text" placeholder="Name of the Organization" />
               <button className="add-organization-button" type="submit" onClick={handleAddOrganization}>Add Organization</button>
           </div>
 

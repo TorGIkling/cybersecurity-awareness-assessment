@@ -24,6 +24,13 @@
     width: 100%;
 }
 
+.privacy-statement {
+    width: 75%;
+    height: 10rem;
+    font-size: 4rem;
+    text-align: center;
+}
+
 .start-btn {
     width: 25rem;
     height: 5rem;
