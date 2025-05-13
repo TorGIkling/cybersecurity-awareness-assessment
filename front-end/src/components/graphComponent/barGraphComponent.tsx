@@ -28,7 +28,7 @@ function BarGraphComponent ({averageAnswers, totalAverage}: GraphComponentProps)
         labels: answers.map((answer) => answer.questionNumber),
         datasets: [
             {
-                label: answers[0]?.text + "Answer",
+                label: answers[0]?.text + " Answer",
                 data: answers.map((answer) => answer.graphNumbers),
                 backgroundColor: answers.map((answer) => {
                    if (answer.graphNumbers <= 2.5) {

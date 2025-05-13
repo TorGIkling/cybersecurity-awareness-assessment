@@ -9,6 +9,7 @@ interface SpiderGraphComponentProps {
         questionId: number;
         graphNumbers: number;
         questionText: string;
+        text: string;
         questionNumber: number;
 
     }[];
@@ -19,7 +20,7 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
         labels: averageAnswers.map(answer => answer.questionNumber),
         datasets: [
             {
-                label: "Average Answers",
+                label:  averageAnswers[0].text + " Answer",
                 data: averageAnswers.map(answer => answer.graphNumbers),
                 borderWidth: 2,
                 pointBorderColor: averageAnswers.map(answer => {
@@ -80,7 +81,7 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
             },
             title: {
                 display: true,
-                text: "Average Results for each Question",
+                text: averageAnswers[0].text + " Results for each Question",
             },
         },
     };
