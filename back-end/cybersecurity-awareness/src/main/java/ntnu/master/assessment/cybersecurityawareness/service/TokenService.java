@@ -49,7 +49,7 @@ public class TokenService {
                 .claim("role", role)
                 .claim("hasAnswered", hasAnswered)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30))) // 1 hour expiration
+                .setExpiration(new Date(System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(30)))
                 .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
     }
