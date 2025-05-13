@@ -3,7 +3,8 @@ import {useContext, useEffect, useRef, useState} from "react";
 import {AuthContext} from "../AuthProvider";
 import BarGraphComponent from "../graphComponent/barGraphComponent";
 import SpiderGraphComponent from "../graphComponent/spiderGraphComponent";
-import {data} from "react-router-dom";
+
+
 
 interface Answer {
     answerId: number;
@@ -26,6 +27,7 @@ function ResultsComponent() {
     const [answer, setAnswer] = useState<Answer[]>([]);
     const [graphData, setGraphData] = useState<graphData[]>([]);
     const [totalAverage, setTotalAverage] = useState<number>(0);
+    const [lowestAverage, setLowestAverage] = useState<number>(0);
     const [resultType, setResultType] = useState<string>("average");
     const organizationId = useContext(AuthContext)?.organizationId;
     const didFetchRef = useRef(false);
@@ -67,12 +69,8 @@ function ResultsComponent() {
         
     }
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    const handleAnswerChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setResultType(event.target.value);
+    const handleAnswerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setResultType(e.target.value);
     }
 
     const calculateAverage = () => {
@@ -109,13 +107,15 @@ function ResultsComponent() {
         console.log("graphData", graphData);
         setGraphData(graphData);
 
-        let total = 0;
-        for (let i = 0; i < graphData.length; i += 1) {
-            total += graphData[i].graphNumbers;
+        let averageTotal = 0;
+        let lowestTotal = 0;
+        for (let i = 0; i < graphData.length; i ++) {
+                averageTotal += graphData[i].graphNumbers;
+                lowestTotal += graphData[i].lowest;
+
         }
-        const totalAverage = total / graphData.length;
-        console.log("Total Average:", totalAverage);
-        setTotalAverage(totalAverage);
+        setTotalAverage(averageTotal/graphData.length);
+        setLowestAverage(lowestTotal/graphData.length);
 
     }
 
@@ -152,13 +152,20 @@ function ResultsComponent() {
 
                     </div>
                     <BarGraphComponent averageAnswers={resultType === "average"
-                        ? graphData.map(data => ({...data, graphNumbers: data.graphNumbers, text: "Average"}))
-                        : graphData.map(data => ({...data, graphNumbers: data.lowest, text:"Lowest"}))
-                    } totalAverage={totalAverage} />
+                            ? graphData.map(data => ({...data, graphNumbers: data.graphNumbers, text: "Average"}))
+                            : graphData.map(data => ({...data, graphNumbers: data.lowest, text:"Lowest"}))
+                        }  totalAverage={resultType === "average"
+                            ? totalAverage
+                            : lowestAverage
+                        }  resultType={resultType} />
                     <SpiderGraphComponent averageAnswers={resultType === "average"
-                        ? graphData.map(data => ({...data, graphNumbers: data.graphNumbers, text: "Average"}))
-                        : graphData.map(data => ({...data, graphNumbers: data.lowest, text:"Lowest"}))
-                    }/>
+                            ? graphData.map(data => ({...data, graphNumbers: data.graphNumbers, text: "Average"}))
+                            : graphData.map(data => ({...data, graphNumbers: data.lowest, text:"Lowest"}))
+                        } totalAverage={resultType === "average"
+                            ? totalAverage
+                            : lowestAverage
+                        }   resultType={resultType}
+                    />
                 </div>
                 <div className="results-component-answers">
                     {graphData.map((answer) => (

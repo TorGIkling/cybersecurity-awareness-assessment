@@ -11,8 +11,9 @@ interface SpiderGraphComponentProps {
         questionText: string;
         text: string;
         questionNumber: number;
-
     }[];
+    totalAverage:number;
+    resultType: string;
 }
 
 function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
@@ -20,7 +21,7 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
         labels: averageAnswers.map(answer => answer.questionNumber),
         datasets: [
             {
-                label:  averageAnswers[0].text + " Answer",
+                label:  averageAnswers[0]?.text + " Answer",
                 data: averageAnswers.map(answer => answer.graphNumbers),
                 borderWidth: 2,
                 pointBorderColor: averageAnswers.map(answer => {
@@ -81,7 +82,7 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
             },
             title: {
                 display: true,
-                text: averageAnswers[0].text + " Results for each Question",
+                text: averageAnswers[0]?.text + " Results for each Question",
             },
         },
     };

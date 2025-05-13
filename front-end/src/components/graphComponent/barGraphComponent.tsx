@@ -16,19 +16,20 @@ interface GraphComponentProps {
         questionNumber: number;
     }[];
     totalAverage: number;
+    resultType: string;
 }
 
 
-function BarGraphComponent ({averageAnswers, totalAverage}: GraphComponentProps) {
+function BarGraphComponent ({averageAnswers, totalAverage, resultType}: GraphComponentProps) {
     const answers = averageAnswers;
     console.log("Total Average:", totalAverage);
-    const totalAnswerAverage = Math.round((totalAverage + Number.EPSILON)*100) / 100;
+    const totalAnswerAverage = totalAverage.toFixed(2);
 
     const data = {
         labels: answers.map((answer) => answer.questionNumber),
         datasets: [
             {
-                label: answers[0]?.text + " Answer",
+                label: resultType === "average" ? "Average Answer" : "Lowest  Answer",
                 data: answers.map((answer) => answer.graphNumbers),
                 backgroundColor: answers.map((answer) => {
                    if (answer.graphNumbers <= 2.5) {
