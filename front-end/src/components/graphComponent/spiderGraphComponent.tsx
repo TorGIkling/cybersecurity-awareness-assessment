@@ -7,9 +7,10 @@ ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip, 
 interface SpiderGraphComponentProps {
     averageAnswers: {
         questionId: number;
-        average: number;
+        graphNumbers: number;
         questionText: string;
         questionNumber: number;
+
     }[];
 }
 
@@ -19,39 +20,39 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
         datasets: [
             {
                 label: "Average Answers",
-                data: averageAnswers.map(answer => answer.average),
+                data: averageAnswers.map(answer => answer.graphNumbers),
                 borderWidth: 2,
                 pointBorderColor: averageAnswers.map(answer => {
-                    if (answer.average <= 2.5) {
+                    if (answer.graphNumbers <= 2.5) {
                         return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.average > 2.5 && answer.average < 4.0) {
+                    } else if (answer.graphNumbers > 2.5 && answer.graphNumbers < 4.0) {
                         return "rgba(255, 206, 86, 0.6)";
                     } else {
                         return "rgba(73,201,17,0.6)";
                     }
                 }),
                 pointBackgroundColor: averageAnswers.map(answer => {
-                    if (answer.average <= 2.5) {
+                    if (answer.graphNumbers <= 2.5) {
                         return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.average > 2.5 && answer.average <= 4.0) {
+                    } else if (answer.graphNumbers > 2.5 && answer.graphNumbers <= 4.0) {
                         return "rgba(255, 206, 86, 0.6)";
                     } else {
                         return "rgba(73,201,17,0.6)";
                     }
                 }),
                 backgroundColor: averageAnswers.map((answer) => {
-                    if (answer.average <= 2.5) {
+                    if (answer.graphNumbers <= 2.5) {
                         return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.average > 2.0 && answer.average < 4.0) {
+                    } else if (answer.graphNumbers > 2.0 && answer.graphNumbers < 4.0) {
                         return "rgba(255, 206, 86, 0.6)";
                     } else {
                         return "rgba(73,201,17,0.6)";
                     }
                 }),
                 borderColor: averageAnswers.map((answer) => {
-                    if (answer.average <= 2.5) {
+                    if (answer.graphNumbers <= 2.5) {
                         return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.average > 2.5 && answer.average < 4.0) {
+                    } else if (answer.graphNumbers > 2.5 && answer.graphNumbers < 4.0) {
                         return "rgba(255, 206, 86, 0.6)";
                     } else {
                         return "rgba(73,201,17,0.6)";

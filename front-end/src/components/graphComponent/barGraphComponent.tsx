@@ -10,8 +10,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 interface GraphComponentProps {
     averageAnswers: {
         questionId: number;
-        average: number;
+        graphNumbers: number;
         questionText: string;
+        text: string;
         questionNumber: number;
     }[];
     totalAverage: number;
@@ -27,21 +28,21 @@ function BarGraphComponent ({averageAnswers, totalAverage}: GraphComponentProps)
         labels: answers.map((answer) => answer.questionNumber),
         datasets: [
             {
-                label: "Average Answers",
-                data: answers.map((answer) => answer.average),
+                label: answers[0]?.text + "Answer",
+                data: answers.map((answer) => answer.graphNumbers),
                 backgroundColor: answers.map((answer) => {
-                   if (answer.average <= 2.5) {
+                   if (answer.graphNumbers <= 2.5) {
                        return "rgba(255, 99, 132, 0.6)";
-                   } else if (answer.average > 2.0 && answer.average < 4.0) {
+                   } else if (answer.graphNumbers > 2.0 && answer.graphNumbers < 4.0) {
                           return "rgba(255, 206, 86, 0.6)";
                    } else {
                           return "rgba(73,201,17,0.6)";
                    }
                 }),
                 borderColor: answers.map((answer) => {
-                    if (answer.average <= 2.5) {
+                    if (answer.graphNumbers <= 2.5) {
                         return "rgba(255, 99, 132, 0.6)";
-                    } else if (answer.average > 2.5 && answer.average < 4.0) {
+                    } else if (answer.graphNumbers > 2.5 && answer.graphNumbers < 4.0) {
                         return "rgba(255, 206, 86, 0.6)";
                     } else {
                         return "rgba(73,201,17,0.6)";

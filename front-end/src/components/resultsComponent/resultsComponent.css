@@ -29,6 +29,29 @@
     height: 70vh;
 }
 
+.results-graph-btn-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.5rem;
+    margin: auto;
+    width: 30vw;
+    height: 5rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    border: 2px solid black;
+}
+
+.rad-btn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+    height: 5rem;
+}
+
 .results-component-answers {
     display: flex;
     flex-direction: column;
@@ -50,6 +73,8 @@
     height: 5rem;
     border-bottom: 1px solid #000000;
 }
+
+
 
 .results-component-answer-text {
     font-size: 2rem;

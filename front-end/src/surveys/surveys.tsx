@@ -21,8 +21,8 @@ function Surveys() {
             <Header/>
             <SurveyList/>
             <div className={"survey-page-btn-row"}>
-                <button className={"survey-page-back-button"} onClick={handleBackBtn}>Tilbake</button>
-                <button className={"survey-page-button"} onClick={handleNewSurvey}>Ny undersøkelse</button>
+                <button className={"survey-page-back-button"} onClick={handleBackBtn}>Back</button>
+                <button className={"survey-page-button"} onClick={handleNewSurvey}>New Survey</button>
             </div>
         </div>
     );
