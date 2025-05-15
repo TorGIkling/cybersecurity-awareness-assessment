@@ -78,7 +78,7 @@ function AddQuestion() {
                 <select className="add-question-select" id="category" >
                     <option value="" hidden selected disabled>Choose category</option>
                     <option value="Best Practice">Best Practice</option>
-                    <option value="Physical Security">Physical Security</option>
+                    <option value="Interception">Interception</option>
                     <option value="Phishing">Phishing</option>
                 </select>
             </div>
