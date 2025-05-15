@@ -28,4 +28,7 @@ public class Answer {
 
     @Column(name = "question_text")
     private String questionText;
+
+    @Column(name = "category")
+    private String category;
 }

@@ -28,6 +28,7 @@
 .form-upper-element{
     display: flex;
     flex-direction: row;
+    font-size: 2.5rem;
     justify-content: end;
     align-items: start;
     margin: 1rem 10rem 1rem 1rem;

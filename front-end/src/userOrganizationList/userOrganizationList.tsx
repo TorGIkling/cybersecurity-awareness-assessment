@@ -21,8 +21,8 @@ function UserOrganizationList() {
             <Header/>
             <UserList/>
             <div className="btn-row">
-                <button className= 'user-list-btn' onClick={handleBackClick}>Tilbake</button>
-                <button className='user-list-btn' onClick={handleNewUserClick} >Ny Bruker</button>
+                <button className= 'user-list-btn' onClick={handleBackClick}>Back</button>
+                <button className='user-list-btn' onClick={handleNewUserClick}>Add User</button>
             </div>
 
         </div>

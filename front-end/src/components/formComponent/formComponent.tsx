@@ -10,6 +10,7 @@ interface Answer {
     answer: number;
     organizationId: number;
     questionText: string;
+    category: string;
 }
 
 function FormComponent() {
@@ -20,6 +21,7 @@ function FormComponent() {
     const userId = useContext(AuthContext)?.userId ?? 0;
     const questionId = step?.questionID;
     const questionText = step?.questionText;
+    const category = step?.category;
     const lowText = step?.lowText;
     const highText = step?.highText;
     const middleText = step?.middleText;
@@ -38,13 +40,14 @@ function FormComponent() {
         setSelectedAnswer(selectedAnswer);
         const updatedAnswers = [...answers];
         while (updatedAnswers.length <= currentStepIndex) {
-            updatedAnswers.push({questionId: 0, answer: 0, organizationId: 0, questionText: ""});
+            updatedAnswers.push({questionId: 0, answer: 0, organizationId: 0, questionText: "", category: ""});
         }
         updatedAnswers[currentStepIndex] ={
             questionId: questionId,
             answer: selectedAnswer,
             organizationId: organizationId,
             questionText: questionText,
+            category: category,
         };
         setAnswers(updatedAnswers);
     }
