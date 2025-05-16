@@ -19,7 +19,8 @@ function StartContent() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
     const didFetchRef = useRef(false);
-    const OrganizationId = useContext(AuthContext)?.organizationId;
+    const organizationId = useContext(AuthContext)?.organizationId;
+    const hasAnswered = useContext(AuthContext)?.hasAnswered;
     const [surveyName, setSurveyName] = useState<string>("");
 
 
@@ -28,11 +29,14 @@ function StartContent() {
             didFetchRef.current = true;
             loadSurveyList()
         }
-    }, [OrganizationId]);
+    }, [organizationId]);
 
+    const surveyNotStarted = () => {
+        navigate('/');
+    }
 
     const loadSurveyList = async () => {
-        let path = "/getSurveyByOrgId/" + OrganizationId;
+        let path = "/getSurveyByOrgId/" + organizationId;
         const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {
             method: "GET",
             headers: {
@@ -46,6 +50,10 @@ function StartContent() {
             return;
         }
         const json = await response.json();
+
+        if (json.length === 0 || hasAnswered ) {
+            surveyNotStarted();
+        }
 
         for (let i = 0; i < json.length; i++) {
             if (json[i].active) {

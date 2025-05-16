@@ -19,6 +19,7 @@ function FormComponent() {
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
     const organizationId = useContext(AuthContext)?.organizationId ?? 0;
     const userId = useContext(AuthContext)?.userId ?? 0;
+    const hasAnswered = useContext(AuthContext)?.hasAnswered;
     const questionId = step?.questionID;
     const questionText = step?.questionText;
     const category = step?.category;
@@ -67,6 +68,7 @@ function FormComponent() {
         let path = "/submitAnswers";
 
 
+
         const response = await fetch(process.env.REACT_APP_REST_API_URL + path, {
             method: "POST",
             headers: {
@@ -107,9 +109,11 @@ function FormComponent() {
 
     useEffect(() => {
         console.log("step:", step);
+        if (step === undefined || hasAnswered) {
+            navigate("/");
+        }
         setSelectedAnswer(null)
     }, [step]);
-    console.log(currentStepIndex)
 
     return (
         <form className="form-component">

@@ -44,7 +44,6 @@ function App() {
             <Route path="/monitor" element={<EvaluatorRoute><MonitorEvaluation/></EvaluatorRoute>} />
             <Route path="/startEval" element={<EvaluatorRoute><StartEvaluation/></EvaluatorRoute>} />
             <Route path="/endEval" element={<EvaluatorRoute><EndEval/></EvaluatorRoute>} />
-            <Route path="/finishSurvey" element={<EmployeeRoute><DeliverSurvey/></EmployeeRoute>} />
         </Routes>
       </>
   );
