@@ -72,9 +72,9 @@ function AddQuestion() {
         <div className="add-question-page">
             <div className="add-question-container">
                 <input className="add-question-input" id="questionText" type="text" placeholder="Question"/>
-                <input className="add-question-input" id="highText" type="text" placeholder="Text for highest value"/>
+                <input className="add-question-input" id="highText" type="text" placeholder="Text for best value"/>
                 <input className="add-question-input" id="middleText" type="text" placeholder="Text for middle value"/>
-                <input className="add-question-input" id="lowText" type="text" placeholder="Text for worst vlue"/>
+                <input className="add-question-input" id="lowText" type="text" placeholder="Text for worst value"/>
                 <select className="add-question-select" id="category" >
                     <option value="" hidden selected disabled>Choose category</option>
                     <option value="Best Practice">Best Practice</option>
