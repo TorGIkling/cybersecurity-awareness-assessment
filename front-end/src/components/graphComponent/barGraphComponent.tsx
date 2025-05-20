@@ -17,10 +17,12 @@ interface GraphComponentProps {
     }[];
     totalAverage: number;
     resultType: string;
+    yMin: number;
+    yMax: number;
 }
 
 
-function BarGraphComponent ({averageAnswers, totalAverage, resultType}: GraphComponentProps) {
+function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMax}: GraphComponentProps) {
     const answers = averageAnswers;
     console.log("Total Average:", totalAverage);
     const totalAnswerAverage = totalAverage.toFixed(2);
@@ -85,8 +87,8 @@ function BarGraphComponent ({averageAnswers, totalAverage, resultType}: GraphCom
         scales: {
             y: {
                 beginAtZero: false,
-                min: 1,
-                max: 5,
+                min: yMin,
+                max: yMax,
                 ticks: {
                     stepSize: 1,
                 },

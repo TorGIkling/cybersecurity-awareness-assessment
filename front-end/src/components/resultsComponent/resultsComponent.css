@@ -1,5 +1,6 @@
 .results-component-container {
     display: flex;
+    position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -29,6 +30,8 @@
     height: 90%;
     overflow-y: auto;
 }
+
+
 
 .results-graph-btn-row {
     display: flex;
@@ -63,6 +66,31 @@
     overflow-y: auto;
     margin: 1rem;
     border: 1px solid #000000;
+}
+
+.selected-results-component {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background-color: white;
+    padding: 20px;
+    border: 2px solid #000000;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 80%; /* Adjust width as needed */
+    max-width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-results-component-text {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
 .results-component-answer-item {

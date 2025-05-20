@@ -6,6 +6,7 @@ import SpiderGraphComponent from "../graphComponent/spiderGraphComponent";
 
 
 
+
 interface Answer {
     answerId: number;
     answer: number;
@@ -20,19 +21,22 @@ interface graphData {
     lowest: number;
     questionText: string;
     questionNumber: number;
+    yMin:number;
 }
 
 
 function ResultsComponent() {
     const [answer, setAnswer] = useState<Answer[]>([]);
     const [graphData, setGraphData] = useState<graphData[]>([]);
+    const [selectedQuestion, setSelectedQuestion] = useState<graphData[]>([]);
+    const [selectedAverage, setSelectedAverage] = useState<number>(0);
     const [totalAverage, setTotalAverage] = useState<number>(0);
     const [lowestAverage, setLowestAverage] = useState<number>(0);
     const [resultType, setResultType] = useState<string>("average");
     const organizationId = useContext(AuthContext)?.organizationId;
     const didFetchRef = useRef(false);
     const [loading , setLoading] = useState(true);
-
+    const selectedResultsRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {
         if (!didFetchRef.current) {
             didFetchRef.current = true;
@@ -46,6 +50,19 @@ function ResultsComponent() {
             calculateAverage();
         }
     }, [loading]);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            if (selectedResultsRef.current && !selectedResultsRef.current.contains(event.target as Node)) {
+                setSelectedQuestion([]);
+            }
+        }
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+    }, []);
 
     const loadAnswerList = async () => {
         let graphNumbers = [];
@@ -101,6 +118,8 @@ function ResultsComponent() {
             lowest,
             questionText,
             questionNumber,
+            yMin: 1,
+            yMax: 5,
         }));
 
 
@@ -112,13 +131,43 @@ function ResultsComponent() {
         for (let i = 0; i < graphData.length; i ++) {
                 averageTotal += graphData[i].graphNumbers;
                 lowestTotal += graphData[i].lowest;
-
         }
         setTotalAverage(averageTotal/graphData.length);
         setLowestAverage(lowestTotal/graphData.length);
 
     }
 
+
+    const displayQuestionResults = (questionId: number) => () => {
+        const questionResults= answer.filter((data) => data.questionId === questionId);
+
+        const valueCounts = Array(5).fill(0);
+
+        questionResults.forEach((result) => {
+            if (result.answer >= 1 && result.answer <= 5) {
+                valueCounts[result.answer - 1]++;
+            }
+        });
+
+        let total = 0;
+        console.log(questionResults.length);
+        for (let i = 0; i < questionResults.length; i ++) {
+            total += questionResults[i].answer;
+        }
+        setSelectedAverage(total/questionResults.length);
+
+        const formattedQuestionResults = valueCounts.map((count, index) => ({
+            questionId,
+            graphNumbers: count,
+            lowest: 0,
+            questionText: questionResults[0]?.questionText,
+            questionNumber: index + 1,
+            yMin: 0,
+            yMax: questionResults.length,
+        }));
+        setSelectedQuestion(formattedQuestionResults);
+
+    }
 
     return (
         <div className='results-component-container'>
@@ -157,7 +206,10 @@ function ResultsComponent() {
                         }  totalAverage={resultType === "average"
                             ? totalAverage
                             : lowestAverage
-                        }  resultType={resultType} />
+                        }  resultType={resultType}
+                        yMin={1}
+                        yMax={5}
+                    />
                     <SpiderGraphComponent averageAnswers={resultType === "average"
                             ? graphData.map(data => ({...data, graphNumbers: data.graphNumbers, text: "Average"}))
                             : graphData.map(data => ({...data, graphNumbers: data.lowest, text:"Lowest"}))
@@ -165,11 +217,12 @@ function ResultsComponent() {
                             ? totalAverage
                             : lowestAverage
                         }   resultType={resultType}
+
                     />
                 </div>
                 <div className="results-component-answers">
                     {graphData.map((answer) => (
-                        <div className="results-component-answer-item" key={answer.questionId}>
+                        <div onClick={displayQuestionResults(answer.questionId)} className="results-component-answer-item" key={answer.questionId}>
                             <p className="results-component-answer-text"> {answer.questionNumber +". " +answer.questionText}</p>
                             <p className="results-component-answer-number">{resultType==="average"
                                     ? answer.graphNumbers.toFixed(2)
@@ -178,10 +231,23 @@ function ResultsComponent() {
                             </p>
                         </div>
                     ))}
-
                 </div>
-
             </div>
+            {selectedQuestion && selectedQuestion.length > 0 &&(
+                <div ref={selectedResultsRef} className="selected-results-component">
+                    <p className="selected-results-component-text">{selectedQuestion[0]?.questionText}</p>
+                        <BarGraphComponent averageAnswers={selectedQuestion.map((answer) => ({
+                            ...answer,
+                            graphNumbers: answer.graphNumbers,
+                            text: answer.questionText,
+                            questionNumber: answer.questionNumber}))}
+                       totalAverage={selectedAverage}
+                       resultType={"average"}
+                       yMin={0}
+                       yMax={selectedQuestion.length}
+                    />
+                </div>
+            )}
         </div>
     );
 }

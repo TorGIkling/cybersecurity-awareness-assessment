@@ -30,7 +30,10 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())// Disable CSRF protection
                 .cors(cors -> {})
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/login").permitAll() // Allow all requests to /api/v1/auth/**
+                        .requestMatchers("/login").permitAll()// Allow all requests to /api/v1/auth/**
+                        .requestMatchers("/addUser", "/orgs", "/addOrg","/addSurvey", "/addQuestion", "/addSurvey", "/users/").hasRole("Admin")
+                        .requestMatchers("/updateSurvey/", "/users/","/getAnswersByOrgId/").hasRole("Evaluator")
+                        .requestMatchers("/getAnswersByOrgId/").hasRole("Manager")
                         .anyRequest().authenticated() // All other requests require authentication
                 )
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -52,7 +55,6 @@ public class SecurityConfig {
         return authentication -> {
             UserDetails userDetails = userDetailsService.loadUserByUsername(authentication.getName());
             if (passwordEncoder().matches(authentication.getCredentials().toString(), userDetails.getPassword())) {
-                ;
                 return new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
             }else {
                 throw new RuntimeException("Invalid credentials");

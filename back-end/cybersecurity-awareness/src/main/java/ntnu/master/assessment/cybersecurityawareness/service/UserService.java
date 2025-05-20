@@ -48,11 +48,11 @@ public class UserService {
     }
 
     public User loginUser(User user) {
-        System.out.println("Logging in user: " + user.getEmail());
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword())
         );
         if (authentication.isAuthenticated()) {
+            System.out.println("Logging in user: " + user.getEmail());
             return userRepository.getUserByEmail(user.getEmail());
         } else {
             throw new RuntimeException("Email not found");
