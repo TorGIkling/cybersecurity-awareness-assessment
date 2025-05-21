@@ -19,14 +19,15 @@ interface GraphComponentProps {
     resultType: string;
     yMin: number;
     yMax: number;
+    color:string;
 }
 
 
-function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMax}: GraphComponentProps) {
+function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMax, color}: GraphComponentProps) {
     const answers = averageAnswers;
     console.log("Total Average:", totalAverage);
     const totalAnswerAverage = totalAverage.toFixed(2);
-
+    console.log("resultType", resultType)
     const data = {
         labels: answers.map((answer) => answer.questionNumber),
         datasets: [
@@ -34,13 +35,18 @@ function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMa
                 label: resultType === "average" ? "Average Answer" : "Lowest  Answer",
                 data: answers.map((answer) => answer.graphNumbers),
                 backgroundColor: answers.map((answer) => {
-                   if (answer.graphNumbers <= 2.5) {
-                       return "rgba(255, 99, 132, 0.6)";
-                   } else if (answer.graphNumbers > 2.0 && answer.graphNumbers < 4.0) {
-                          return "rgba(255, 206, 86, 0.6)";
-                   } else {
-                          return "rgba(73,201,17,0.6)";
-                   }
+                    if (color === "notSelected") {
+                        if (answer.graphNumbers <= 2.5) {
+                            return "rgba(255, 99, 132, 0.6)";
+                        } else if (answer.graphNumbers > 2.0 && answer.graphNumbers < 4.0) {
+                            return "rgba(255, 206, 86, 0.6)";
+                        } else {
+                            return "rgba(73,201,17,0.6)";
+                        }
+                    } else {
+                        return "rgb(55,163,163)"
+                    }
+
                 }),
                 borderColor: "rgba(0,0,0,1)",
                 borderWidth: 1,
@@ -85,6 +91,20 @@ function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMa
 
         },
         scales: {
+            x: {
+                title: {
+                    display:true,
+                    text: resultType === "selected" ? "Answer" : "",
+                    color: "black",
+                    font: {
+                        size: 14,
+                    },
+                },
+                grid: {
+                    display: true,
+                    color: "rgba(0,0,0,0.5)",
+                },
+            },
             y: {
                 beginAtZero: false,
                 min: yMin,
@@ -92,7 +112,20 @@ function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMa
                 ticks: {
                     stepSize: 1,
                 },
-            }
+                title: {
+                    display: true,
+                    text: resultType === "selected" ? "Number of answers" : "",
+                    color: "black",
+                    font: {
+                        size: 14,
+                    },
+                },
+                grid: {
+                    display: true,
+                    color: "rgba(0,0,0,0.5)",
+                },
+            },
+
         }
     }
 

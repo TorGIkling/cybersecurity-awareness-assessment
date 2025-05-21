@@ -209,6 +209,7 @@ function ResultsComponent() {
                         }  resultType={resultType}
                         yMin={1}
                         yMax={5}
+                        color={"notSelected"}
                     />
                     <SpiderGraphComponent averageAnswers={resultType === "average"
                             ? graphData.map(data => ({...data, graphNumbers: data.graphNumbers, text: "Average"}))
@@ -242,13 +243,15 @@ function ResultsComponent() {
                             text: answer.questionText,
                             questionNumber: answer.questionNumber}))}
                        totalAverage={selectedAverage}
-                       resultType={"average"}
+                       resultType={"selected"}
                        yMin={0}
                        yMax={selectedQuestion.length}
+                       color={"selected"}
                     />
                 </div>
             )}
         </div>
     );
 }
+
 export default ResultsComponent;

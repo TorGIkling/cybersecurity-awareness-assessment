@@ -12,6 +12,7 @@ function Results() {
         navigate("/");
     }
 
+
     return (
         <div className='results-container'>
             <Header />
