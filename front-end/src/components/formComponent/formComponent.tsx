@@ -114,11 +114,9 @@ function FormComponent() {
 
         if (!activeSurvey|| hasAnswered) {
             navigate("/");
-        } else {
-            setSelectedAnswer(null)
         }
-
-    }, [activeSurvey]);
+        setSelectedAnswer(null)
+    }, [step, activeSurvey]);
 
     return (
         <form className="form-component">
