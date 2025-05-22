@@ -108,12 +108,14 @@
 .results-component-answer-text {
     font-size: 2rem;
     text-align: left;
-    width: 100%;
+    width: 80%;
     margin: 1rem;
 }
 
 .results-component-answer-number {
-    text-align: left;
+    text-align: center;
     margin-right: 1rem;
     font-size: 2rem;
+    width: 20%;
+    border-left: 1px solid #000000;
 }

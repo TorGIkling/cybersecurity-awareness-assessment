@@ -42,7 +42,7 @@ function HomeContent() {
     }
 
     const handelStartSurvey = () => {
-        navigate("/startSurvey");
+        navigate("/startSurvey",{state: {activeSurvey: activeSurvey}});
     };
 
 

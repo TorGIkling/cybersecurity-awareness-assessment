@@ -3,7 +3,7 @@ import "./formComponent.css"
 import {useContext, useEffect, useState} from "react";
 import useMultistepForm from "../useMultistepForm/useMultistepForm";
 import {AuthContext} from "../AuthProvider";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 
 interface Answer {
     questionId: number;
@@ -16,7 +16,9 @@ interface Answer {
 function FormComponent() {
     const { next, back, steps, currentStepIndex, step, isFirstStep, isLastStep} = useMultistepForm()!;
     const [answers, setAnswers] = useState<Answer[]>([]);
+    const {activeSurvey} = useLocation().state as {activeSurvey: boolean} ?? false;
     const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+    const [isLoading, setIsLoading] = useState(true);
     const organizationId = useContext(AuthContext)?.organizationId ?? 0;
     const userId = useContext(AuthContext)?.userId ?? 0;
     const hasAnswered = useContext(AuthContext)?.hasAnswered;
@@ -107,13 +109,16 @@ function FormComponent() {
         console.log(jsonUser);
     }
 
+
     useEffect(() => {
-        console.log("step:", step);
-        if (step === undefined || hasAnswered) {
+
+        if (!activeSurvey|| hasAnswered) {
             navigate("/");
+        } else {
+            setSelectedAnswer(null)
         }
-        setSelectedAnswer(null)
-    }, [step]);
+
+    }, [activeSurvey]);
 
     return (
         <form className="form-component">

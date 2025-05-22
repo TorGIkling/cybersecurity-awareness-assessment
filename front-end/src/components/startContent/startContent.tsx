@@ -1,6 +1,6 @@
 import './startContent.css';
 
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {useContext, useEffect, useRef, useState} from "react";
 import {AuthContext} from "../AuthProvider";
 
@@ -15,6 +15,7 @@ interface Survey {
 
 function StartContent() {
     const [survey, setSurvey] = useState<Survey[]>([]);
+    const {activeSurvey} = useLocation().state as {activeSurvey: boolean};
     const [surveyId, setSurveyId] = useState<number | null>(null);
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
@@ -75,7 +76,7 @@ function StartContent() {
 
     const handleStartButton = () => {
         console.log("surveyId", surveyId);
-        navigate('/survey', {state: {surveyId: surveyId}});
+        navigate('/survey', {state: {surveyId: surveyId, activeSurvey: activeSurvey}});
     }
 
     return (

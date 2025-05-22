@@ -90,7 +90,7 @@ function UseMultistepForm() {
         return {
             currentStepIndex: currentStepIndex,
             steps,
-            step: steps[currentStepIndex],
+            step: steps[currentStepIndex] || 1,
             isFirstStep: currentStepIndex === 0,
             isLastStep: currentStepIndex === steps.length - 1,
             next,

@@ -222,6 +222,10 @@ function ResultsComponent() {
                     />
                 </div>
                 <div className="results-component-answers">
+                    <div className="results-component-answer-item">
+                        <p className="results-component-answer-text">Question</p>
+                        <p className="results-component-answer-number">{resultType === "average" ? "Average Score" : "Lowest Score"}</p>
+                    </div>
                     {graphData.map((answer) => (
                         <div onClick={displayQuestionResults(answer.questionId)} className="results-component-answer-item" key={answer.questionId}>
                             <p className="results-component-answer-text"> {answer.questionNumber +". " +answer.questionText}</p>
