@@ -26,7 +26,23 @@ interface GraphComponentProps {
 function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMax, color}: GraphComponentProps) {
     const answers = averageAnswers;
     console.log("Total Average:", totalAverage);
-    const totalAnswerAverage = totalAverage.toFixed(2);
+    const totalAnswerAverage = () => {
+        console.log("Total Average Grade:", totalAverage/5);
+        if (totalAverage/5 >= 0.89) {
+            return totalAverage.toFixed(2) + " Grade: A";
+        } else if (totalAverage/5 >= 0.77) {
+            return totalAverage.toFixed(2) + " Grade: B";
+        } else if (totalAverage/5 >= 0.65) {
+            return totalAverage.toFixed(2) + " Grade: C";
+        } else if (totalAverage/5 >= 0.53) {
+            return totalAverage.toFixed(2) + " Grade: D";
+        } else if (totalAverage/5 >= 0.41) {
+            return totalAverage.toFixed(2) + " Grade: E";
+        } else {
+            return totalAverage.toFixed(2) + " Grade: F";
+        }
+
+    }
     console.log("resultType", resultType)
     const data = {
         labels: answers.map((answer) => answer.questionNumber),
@@ -73,7 +89,7 @@ function BarGraphComponent ({averageAnswers, totalAverage, resultType, yMin, yMa
 
                         return [
                             {
-                                text: totalAnswerAverage.toString(),
+                                text: totalAnswerAverage()!,
                                 fillStyle: color,
                                 strokeStyle: color,
                                 lineWidth: 1,
