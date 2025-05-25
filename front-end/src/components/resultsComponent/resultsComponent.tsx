@@ -4,6 +4,7 @@ import {AuthContext} from "../AuthProvider";
 import BarGraphComponent from "../graphComponent/barGraphComponent";
 import SpiderGraphComponent from "../graphComponent/spiderGraphComponent";
 import {data} from "react-router-dom";
+import {wait} from "@testing-library/user-event/dist/utils";
 
 
 
@@ -44,6 +45,7 @@ function ResultsComponent() {
     const [bestPracticesLowest, setBestPracticesLowest] = useState<string>("");
     const [interceptionLowest, setInterceptionLowest] = useState<string>("");
     const [resultType, setResultType] = useState<string>("average");
+    const [activeList, setActiveList] = useState<boolean>(true);
     const organizationId = useContext(AuthContext)?.organizationId;
     const didFetchRef = useRef(false);
     const [loading , setLoading] = useState(true);
@@ -65,13 +67,20 @@ function ResultsComponent() {
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (selectedResultsRef.current && !selectedResultsRef.current.contains(event.target as Node)) {
-                setSelectedQuestion([]);
+                setTimeout(() => {
+                    setSelectedQuestion([]);
+                    setActiveList(true);
+                }, 100);
+
+
             }
+
         }
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);
+
         }
     }, []);
 
@@ -253,6 +262,7 @@ function ResultsComponent() {
             yMax: questionResults.length,
         }));
         setSelectedQuestion(formattedQuestionResults);
+        setActiveList(false);
 
     }
 
@@ -322,7 +332,11 @@ function ResultsComponent() {
                         <p className="results-component-answer-number">{resultType === "average" ? "Average Score" : "Lowest Score"}</p>
                     </div>
                     {graphData.map((answer) => (
-                        <div onClick={displayQuestionResults(answer.questionId)} className="results-component-answer-item" key={answer.questionId}>
+                        <div onClick={displayQuestionResults(answer.questionId)}
+                             className={`results-component-answer-item ${!activeList ? 'disabled' : ''}`}
+                             key={answer.questionId}
+                             style={{cursor: activeList ? "pointer" : "default"}}>
+
                             <p className="results-component-answer-text"> {answer.questionNumber +". " +answer.questionText}</p>
                             <p className="results-component-answer-category">{answer.category}</p>
                             <p className="results-component-answer-number">{resultType==="average"
