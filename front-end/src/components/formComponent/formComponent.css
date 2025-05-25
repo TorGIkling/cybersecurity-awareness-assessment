@@ -89,6 +89,7 @@
 .empty-text {
     height: 5rem;
     width: 5rem;
+    text-align: center;
 }
 .survey-page-btn-row{
     display: flex;

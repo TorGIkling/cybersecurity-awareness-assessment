@@ -150,7 +150,7 @@ function FormComponent() {
                             id="answer2"
                             checked={selectedAnswer === 2}
                         />
-                        <a className="empty-text"> </a>
+                        <a className="empty-text">2</a>
                     </div>
                     <div className="form-answer">
                         <input
@@ -173,7 +173,7 @@ function FormComponent() {
                             id="answer4"
                             checked={selectedAnswer === 4}
                         />
-                        <a className="empty-text"> </a>
+                        <a className="empty-text">4</a>
                     </div>
                     <div className="form-answer">
                         <input
