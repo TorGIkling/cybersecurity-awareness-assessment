@@ -81,7 +81,7 @@ function SpiderGraphComponent({averageAnswers}: SpiderGraphComponentProps) {
 
     return (
         <div className="spider-graph-container">
-            <div className="spide-chart">
+            <div className="spider-chart">
                 <Radar data={data} options={options} />
             </div>
 
