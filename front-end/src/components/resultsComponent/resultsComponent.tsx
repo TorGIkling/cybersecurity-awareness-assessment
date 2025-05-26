@@ -340,8 +340,8 @@ function ResultsComponent() {
                             <p className="results-component-answer-text"> {answer.questionNumber +". " +answer.questionText}</p>
                             <p className="results-component-answer-category">{answer.category}</p>
                             <p className="results-component-answer-number">{resultType==="average"
-                                    ? answer.graphNumbers.toFixed(2)
-                                    : answer.lowest.toFixed(2)
+                                    ? answer.graphNumbers.toFixed(2) + " (" +calculateGrade(answer.graphNumbers) + ")"
+                                    : answer.lowest.toFixed(2)+ " (" + calculateGrade(answer.lowest) + ")"
                                 }
                             </p>
                         </div>
